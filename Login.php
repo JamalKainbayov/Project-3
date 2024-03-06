@@ -12,15 +12,22 @@ require "conn.php"
 <body>
     <form method="POST" action="Login.php" class=>
         <label for="username">Username:</label>
-        <input type="text" name="username"><br>
+        <input type="text" name="username" autocomplete="off"><br>
         <label for="password">Password:</label>
         <input type="password" name="password" required><br>
         <a class=JxN href="#"> Forgot password?<a>
         <input type="submit" value="Log in">
-    </form>
+         <button type="submit">Register</button>
+</form>
+    
 </body>
 <?php 
- $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+$existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
 
         if ($existingUser) {
             echo "Username already exists. Please choose a different username.";
@@ -31,6 +38,6 @@ require "conn.php"
 
         }
     $conn = null; 
-        
+    }       
 ?>
 </html>

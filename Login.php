@@ -20,9 +20,7 @@ require "conn.php"
     </form>
 </body>
 <?php 
-
-    
-        $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
+ $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
 
         if ($existingUser) {
             echo "Username already exists. Please choose a different username.";

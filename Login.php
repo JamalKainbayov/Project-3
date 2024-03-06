@@ -19,4 +19,20 @@ require "conn.php"
         <input type="submit" value="Log in">
     </form>
 </body>
+<?php 
+
+    
+        $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
+
+        if ($existingUser) {
+            echo "Username already exists. Please choose a different username.";
+        } else {
+
+            $sql = "INSERT INTO user_info (username, password) VALUES ('$username', '$password')";
+            $conn->exec($sql);
+
+        }
+    $conn = null; 
+        
+?>
 </html>

@@ -1,6 +1,5 @@
 <?php
 require_once("Index.php");
-// include("index.php");
 $user_id=$_SESSION['user_id'];
 $query = "SELECT * FROM posts where user_id = $user_id ORDER BY post_id DESC";
 $data = mysqli_query($con, $query);

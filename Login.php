@@ -1,4 +1,5 @@
 <?php
+global $conn;
 require "conn.php"
 ?>
 <!DOCTYPE html>
@@ -9,6 +10,9 @@ require "conn.php"
     <link rel="stylesheet" href="/css/main.css">
     <title>Login</title>
 </head>
+<style>
+    <?php include "Css/main.css" ?>
+</style>
 <body>
     <form method="POST" action="Login.php">
         <label for="username">Username:</label>
@@ -19,7 +23,10 @@ require "conn.php"
         <input type="submit" value="Log in">
     </form>
 </body>
-<?php 
+<?php
+$username = $_POST['username'];
+$password = $_POST['password'];
+
  $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
 
         if ($existingUser) {

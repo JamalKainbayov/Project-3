@@ -22,6 +22,7 @@ require "conn.php"
         <a class=JxN href="#"> Forgot password?<a>
         <input type="submit" value="Log in">
         <button type="submit">Register</button>
+                <button type="submit">Lol</button>
 </form>  
 </body>
 <?php 

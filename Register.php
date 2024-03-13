@@ -1,6 +1,3 @@
-<?php
-require "conn.php"
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,28 +13,33 @@ require "conn.php"
    
 <form method="POST" action="Register.php" class= "login">
     <label for="username">Username:</label>
-        <input type="text" name="username" autocomplete="off"><br>
+    <label>
+        <input type="text" name="username" autocomplete="off">
+    </label><br>
     <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
+    <label>
+        <input type="password" name="password" required>
+    </label><br>
         <a class=JxN href="#"> Forgot password?<a>
         <input type="submit" value="Log in">
         <button type="submit">Register</button>
-                <button type="submit">Lol</button>
+
 </form>  
 </body>
-<?php 
-$encrypt_password = password_hash($_POST, PASSWORD_DEFAULT);
+<?php
+require "conn.php";
 
-$insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
-$insert_user->bindParam(":gebruikersnaam", $_POST['username']);
-$insert_user->bindParam(":wachtwoord", $encrypt_password);
-$insert_user->execute();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $encrypt_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-if ($insert_user->execute()){
+    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+    $insert_user->bindParam(":gebruikersnaam", $_POST['username']);
+    $insert_user->bindParam(":wachtwoord", $encrypt_password);
 
-    header("Location: Login.php");
+    if ($insert_user->execute()) {
+        header("Location: Login.php");
+        exit;
+    }
 }
-
-
 ?>
 </html>

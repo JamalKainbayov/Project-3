@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="Css/tweet_box.css">
 </head>
 <body>
- <?php require "Nav.php" ?>
+ <?php ?>
 
 
 

@@ -10,37 +10,26 @@
     <?php include "Css/main.css"?>
 </style>
 <body>
-<div class="login">
-    <h1>Login</h1>
-    <form action="Login.php" method="post">
-        <label for="username">
-            <i class="fas fa-user"></i>
-        </label>
-        <input type="text" name="username" placeholder="Username" id="username" required>
-        <label for="password">
-            <i class="fas fa-lock"></i>
-        </label>
-        <input type="password" name="password" placeholder="Password" id="password" required>
-        <a href="Login.php">Already have an account? Click here to log in!</a>
-        <input type="submit" value="Login">
-    </form>
-
-</div>
+<form method="POST" action="Register.php" class= "login">
+    <label for="username">Username:</label>
+    <input type="text" name="username" autocomplete="off"><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <a class=JxN href="#"> Forgot password?<a>
+            <input type="submit" value="Log in">
+            <button type="submit">Register</button>
+</form>
 </body>
 <?php
-require "conn.php";
+include "conn.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $encrypt_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$encrypt_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
-    $insert_user->bindParam(":gebruikersnaam", $_POST['username']);
-    $insert_user->bindParam(":wachtwoord", $encrypt_password);
+$insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+$insert_user->bindParam(":gebruikersnaam", $_POST["username"]);
+$insert_user->bindParam(":wachtwoord", $encrypt_password);
+$insert_user->execute();
 
-    if ($insert_user->execute()) {
-        header("Location: Login.php");
-        exit;
-    }
-}
+
 ?>
 </html>

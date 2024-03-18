@@ -1,50 +1,175 @@
 <?php
-require_once("Index.php");
+
+require ("Index.php");
 session_start();
+
+$user_id = $_SESSION['user_id'];
+if (isset ($_POST["btn_add_post"])) {
+
+	$Post_Text = $_POST["post_text"];
+	// if ($Post_Text != "") {
+	// ......uploadImage......
+	if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+
+		$target_dir = "uploadImages/";
+		$target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+		echo ($target_file);
+
+		$name = $_FILES["image"]["name"];
+		$tmp = explode('.', $name);
+		$file_extension = end($tmp);
+		$milliseconds = floor(microtime(true) * 1000);
+		$target_file = $target_dir . $milliseconds . $name;
+
+
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+
+			$insertPost = $conn->prepare("INSERT INTO posts (user_id, post_content, upload_image, post_date) VALUES (:user_id, :post_content,:upload_image, now())");
+			$insertPost->bindParam(":user_id", $user_id);
+			$insertPost->bindParam(":post_content", $Post_Text);
+			$insertPost->bindParam(":upload_image", $target_file);
+			$insertPost->execute();
+			require_once ("Index.php");
+
+
+			echo "Post added successfully with image.";
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+		}
+	} else {
+
+		require_once ("Index.php");
+
+		$insertPost = $conn->prepare("INSERT INTO posts (user_id, post_content, post_date) VALUES (:user_id, :post_content, now())");
+		$insertPost->bindParam(":user_id", $user_id);
+		$insertPost->bindParam(":post_content", $Post_Text);
+		$insertPost->execute();
+
+		echo "Post added successfully.";
+
+	}
+}
+
+
+
 ?>
 
 <body>
-	<?php
-	$user_id= $_SESSION['user_id'];
-	if (isset($_POST["btn_add_post"]))
-	 {
-		$Post_Text = $_POST["post_text"];
-		if ($Post_Text != " ")
-			$sql = "INSERT INTO posts (user_id,post_content,post_date) VALUES ('$user_id','$Post_Text',now())";
-		    $result = mysqli_query($con, $sql);
-	}
-
-	?>
-	<div class="grid-container">
+	<div class="grid-container" id="blur">
 		<div class="main">
 			<p class="page_titel">Home</p>
 			<div class="tweet_box tweet_add">
 				<div class="tweet_left">
-				   <img src="RAlogo.jpeg" alt="">
+					<img src="RAlogo.jpeg" alt="">
 				</div>
-				
 
 				<div class="tweet_body">
-				
-					<form method="post" enctype="multipart/form-data">
-						<textarea name="post_text" id="" cols="100%" rows="3" placeholder="what's happening?"></textarea>
+
+					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+						<textarea name="post_text" id="update" cols="100%" rows="3"
+							placeholder="what's happening?"></textarea>
+
+						<div class="tweet_icons-wrapper">
+							<div class="content">
+							<div class="tweet_icons-add">
+								<label for="img-input" class="inputimg"><i class="fa-regular fa-image icon"></i></label>
+								<input type="file" name="image" value="image" id="img-input" accept="image/*">
+
+								<i class="fa-regular fa-face-smile icon"></i>
+							</div>
+							<div id="image-preview"></div>
+							</div>
+							<!-- <button class="button_tweet" type="submit" name="btn_add_post">Tweet</button> -->
+							<button  class="btn btn-outline-primary" type="submit" name="btn_add_post">Tweet</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+			<?php
+
+			require_once "tweeten.php";
+
+			?>
+
+		</div>
+
+	</div>
+	<!-- update textarea -->
+	<div id="popup-window" class='popup-close'>
+		<div id="close-btn">&times;</div>
+		<div class="tweet_display">
+			<div class="main">
+				<div class="tweet_body ">
+					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+						<input type="hidden" id='updatepost-id' name='post_id'></input>
+						<textarea name="post_text" id="updatepost-text" cols="100%" rows="3"
+							placeholder="update"></textarea>
 
 						<div class="tweet_icons-wrapper">
 							<div class="tweet_icons-add">
 								<a href=""> <i class="fa-regular fa-image"></i></a>
 								<i class="fa-regular fa-face-smile"></i>
-								
-							<button class="button_tweet" type="submit" name="btn_add_post">Tweet</button>
+							</div>
+							<button cclass="btn btn-outline-primary" type="submit" name="btn_update_post">opslaan</button>
 						</div>
 					</form>
 				</div>
 			</div>
-	<?php
-	
-	require_once "tweeten.php";
-	
-	?>
 		</div>
 	</div>
-	
+
+
+
+
+	<!-- Update Post -->
+	<?php
+	if (isset ($_POST["btn_update_post"])) {
+
+		if ($_POST["post_text"] != "") {
+
+			$updatePost = $conn->prepare(query: "UPDATE posts SET post_content= :post_text WHERE post_id= :post_id");
+			$updatePost->bindParam(":post_id", $_POST["post_id"]);
+			$updatePost->bindParam(":post_text", $_POST["post_text"]);
+			$updatePost->execute();
+			if ($updatePost) {
+				header("location:function.php");
+
+				exit;
+
+
+			} else {
+				echo "Er is een fout opgetreden bij het verwijderen van de post.";
+			}
+		}
+	}
+
+
+	?>
+	<script>
+		const closeButton = document.getElementById('close-btn')
+
+		closeButton.addEventListener('click', () => {
+			document.getElementById("blur").classList.remove("active");
+			document.getElementById('popup-window').classList.remove('popup-show')
+			document.getElementById('popup-window').classList.add('popup-close')
+		})
+
+
+		document.getElementById('img-input').addEventListener('change', function() {
+  var file = this.files[0];
+  if (file) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      var img = document.createElement('img');
+	  img.classList.add('s-img')
+      img.src = event.target.result;
+      document.getElementById('image-preview').innerHTML = ''; // Clear previous preview
+      document.getElementById('image-preview').appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+	</script>
 </body>

@@ -33,7 +33,9 @@ require "conn.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $encrypt_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+    // $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+    $insert_user = $conn->prepare("INSERT INTO users (Firstname, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+
     $insert_user->bindParam(":gebruikersnaam", $_POST['username']);
     $insert_user->bindParam(":wachtwoord", $encrypt_password);
 

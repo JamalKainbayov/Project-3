@@ -1,5 +1,4 @@
 <?php
-
 require ("Index.php");
 session_start();
 
@@ -34,10 +33,11 @@ if (isset ($_POST["btn_add_post"])) {
 			// require_once ("home.php");
 
 
-			echo "Post added successfully with image.";
-		} else {
-			echo "Sorry, there was an error uploading your file.";
-		}
+			// echo "Post added successfully with image.";
+		} 
+		// else {
+		// 	echo "Sorry, there was an error uploading your file.";
+		// }
 	} else {
 
 		// require_once ("home.php");
@@ -47,7 +47,7 @@ if (isset ($_POST["btn_add_post"])) {
 		$insertPost->bindParam(":post_content", $Post_Text);
 		$insertPost->execute();
 
-		echo "Post added successfully.";
+		// echo "Post added successfully.";
 
 	}
 
@@ -57,7 +57,7 @@ if (isset ($_POST["btn_add_post"])) {
 
 <body>
 	<div class="grid-container" id="blur">
-		<div class="sidebar">
+		<div class="sideBar">
 		</div>
 		<div class="main">
 			<p class="page_titel">Home</p>
@@ -86,7 +86,7 @@ if (isset ($_POST["btn_add_post"])) {
 								<div id="image-add-preview"></div>
 							</div>
 							<!-- <button class="button_tweet" type="submit" name="btn_add_post">Tweet</button> -->
-							<button class="btn btn-outline-primary" type="submit" name="btn_add_post">Tweet</button>
+							<button class="btn btn-dark" type="submit" name="btn_add_post">Tweet</button>
 
 						</div>
 					</form>
@@ -108,7 +108,7 @@ if (isset ($_POST["btn_add_post"])) {
 		</div>
 		<div class="tweet_display">
 			<div class="main">
-				<div class="tweet_body ">
+				<div class="tweet_body">
 					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
 						<input type="hidden" id='updatepost-id' name='post_id'></input>
 						<textarea name="post_text" id="updatepost-text" cols="100%" rows="3"
@@ -170,10 +170,11 @@ if (isset ($_POST["btn_add_post"])) {
 					// require_once ("home.php");
 	
 
-					echo "Post added successfully with image.";
-				} else {
-					echo "Sorry, there was an error uploading your file.";
+					// echo "Post added successfully with image.";
 				}
+				//  else {
+				// 	echo "Sorry, there was an error uploading your file.";
+				// }
 			} else {
 
 				// require_once ("home.php");
@@ -183,7 +184,7 @@ if (isset ($_POST["btn_add_post"])) {
 				$updatePost->bindParam(":post_content", $_POST["post_text"]);
 				$updatePost->execute();
 
-				echo "Post added successfully.";
+				// echo "Post added successfully.";
 
 			}
 		}
@@ -239,7 +240,7 @@ if (isset ($_POST["btn_add_post"])) {
 		function updatePost(postText, postId, postImg) {
 			console.log(postId, postText)
 			const blur = document.getElementById("blur");
-			blur.classList.add('active');
+			blur.classList.add('activeUpdate');
 			document.getElementById("updatepost-id").value = postId;
 			document.getElementById("updatepost-text").innerText = postText;
 

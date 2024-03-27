@@ -3,8 +3,8 @@
     $servername = "localhost";
     $username_db = "root";
     $password_db = "";
-    // $dbname = "login_page"; 
-    $dbname = "users"; 
+    $dbname = "users";
+
 
 
     

@@ -15,7 +15,7 @@
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="#">
+                <a href="Index.php">
                     <i class='bx bxs-home'></i>
                     <span class="links_name">Home</span>
                 </a>

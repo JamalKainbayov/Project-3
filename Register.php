@@ -30,7 +30,7 @@ if (!empty($_POST["username"]) && isset($_POST["password"])) {
 
     if ($insert_user->execute()) {
         header("Location: Login.php");
-        exit; // Make sure to exit after redirection
+        exit;
     } else {
         echo "Error occurred while registering.";
     }

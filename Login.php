@@ -21,6 +21,7 @@
 </body>
 <?php
 require "conn.php";
+require "Register.php";
 
 echo $_POST["password"];
 $search_user = $conn->prepare("SELECT * FROM user_info WHERE Username = :gebruikersnaam");

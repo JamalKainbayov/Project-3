@@ -2,9 +2,9 @@
 $_GET['post_content'] = $post_text;
 $_GET['post_date'] = $post_date;
 $_GET['upload_image'] = $post_img;
-$_GET['username'] = $user_name;
-
-
+$_GET['Username'] = $user_name;
+$_GET['post_id'] = $post_id;
+$_GET['likesCount'] = $likes_count;
 ?>
 <div class="tweet_box">
     <div class="tweet_left"><img src="RAlogo.jpeg"></div>
@@ -33,8 +33,32 @@ $_GET['username'] = $user_name;
 
         <div class="tweet_icons">
 
-            <a href="" class="like-btn"><i class="fa-regular fa-heart"></i></a>
-            <span class="like-count">0</span>
+        <?php
+            $selectLike = $conn->prepare(query: "SELECT * FROM likes WHERE user_id =:user_id AND post_id= :post_id");
+            $selectLike->bindParam(":post_id", $post_id);
+            $selectLike->bindParam(":user_id", $user_id);
+            $selectLike->execute();
+
+
+            // echo $selectLike->rowCount();
+            if ($selectLike->rowCount() == 1):
+                $row = $selectLike->fetch(PDO::FETCH_ASSOC); {
+                    $like_id = $row['like_id'];
+                }
+                ?>
+                <span class="unlike fa-solid fa-heart" data-id="<?php echo $like_id; ?>"></span>
+                <span class="like fa-regular fa-heart hide" id="<?php echo $post_id; ?>" data-id="<?php echo $post_id; ?>"
+                    data-user="<?php echo $user_id; ?>"></span>
+            <?php else: ?>
+                <!-- user has not yet liked post -->
+                <span class="unlike fa-solid fa-heart hide" data-id="<?php echo $like_id; ?>"></span>
+                <span class="like fa-regular fa-heart" id="<?php echo $post_id; ?>" data-id="<?php echo $post_id; ?>"
+                    data-user="<?php echo $user_id; ?>"></span>
+            <?php endif ?>
+            <span class="like-count">
+                <?php echo $likes_count; ?>
+            </span>
+            
             <a href="comment.php?id=<?php echo $row['post_id']; ?>"><i class="fa-regular fa-comment"></i></a>
         </div>
 
@@ -56,3 +80,52 @@ $_GET['username'] = $user_name;
         </div>
     </div>
 </div>
+
+<!-- <script src="jquery.min.js"></script> -->
+<script>
+    $(document).ready(function (e) {
+        // when the user clicks on like
+        $('.like').unbind().click(function () {
+            let post_id = $(this).data('id');
+            let user_id = $(this).data('user');
+            console.log(user_id);
+            $post = $(this);
+            console.log(post_id);
+            $.ajax({
+                url: 'updateLike.php',
+                type: 'post',
+                data: {
+                    'liked': 1,
+                    'post_id': post_id,
+                    'user_id': user_id
+                },
+                success: function (response) {
+                    $post.parent().find('span.likes_count').text(response + " likes");
+                    $post.addClass('hide');
+                    $post.siblings().removeClass('hide');
+                }
+            });
+        });
+
+
+        // when the user clicks on unlike
+        $('.unlike').unbind().click(function () {
+            let like_id = $(this).data('id');
+            $post = $(this);
+            console.log(like_id);
+            $.ajax({
+                url: 'updateLike.php',
+                type: 'post',
+                data: {
+                    'unliked': 1,
+                    'like_id': like_id
+                },
+                success: function (response) {
+                    $post.parent().find('span.likes_count').text(response + " likes");
+                    $post.addClass('hide');
+                    $post.siblings().removeClass('hide');
+                }
+            });
+        });
+    });
+</script>

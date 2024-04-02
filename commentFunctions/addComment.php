@@ -6,7 +6,7 @@ if (isset ($_POST["btn_add_comment"])) {
     $post_id = $_POST['post_id'];
     if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
 
-        $target_dir = "uploadImages/";
+        $target_dir = "commentsImages/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
         $name = $_FILES["image"]["name"];

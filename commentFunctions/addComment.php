@@ -1,5 +1,5 @@
 <?php
-require ("../Index.php");
+require ("Index.php");
 if (isset ($_POST["btn_add_comment"])) {
 
     $comment = $_POST["comment_text"];
@@ -23,7 +23,7 @@ if (isset ($_POST["btn_add_comment"])) {
             $insertcomment->bindParam(":upload_image", $target_file);
             $insertcomment->bindParam(":post_id", $post_id);
             $insertcomment->execute();
-            echo "Post added successfully with image.";
+            echo "comment added successfully with image.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }

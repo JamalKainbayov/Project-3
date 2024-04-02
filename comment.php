@@ -4,14 +4,13 @@ require_once ("Index.php");
 session_start();
 $post_id = $_GET['id'];
 
-if (isset ($_GET['id'])) {
+if (isset($_GET['id'])) {
     $post_id = $_GET['id'];
 
 
     // $comment_id = $_SESSION['comment_id'];
 
-    $selectPost = $conn->prepare("SELECT posts.*, users.username FROM posts INNER JOIN users WHERE post_id = :post_id");
-
+    $selectPost = $conn->prepare("SELECT posts.* , users.username FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE post_id = :post_id");
     $selectPost->bindParam(":post_id", $post_id);
     $selectPost->execute();
 
@@ -20,9 +19,15 @@ if (isset ($_GET['id'])) {
     $post_date = $row['post_date'];
     $post_img = $row['upload_image'];
     $user_name = $row['username'];
+    $post_id = $row['post_id'];
+
+    $selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
+    $selectLikes->bindParam(":post_id", $post_id);
+    $selectLikes->execute();
+    $likes_count = $selectLikes->rowCount();
 
 
-    require_once ("tweetStructure.php");
+    // require_once ("tweetStructure.php");
 }
 ?>
 
@@ -31,6 +36,9 @@ if (isset ($_GET['id'])) {
     <div class="sidebar">
     </div>
     <div class="main">
+        <p>
+            <?php require_once ("tweetStructure.php"); ?>
+        </p>
         <p class="page_titel">comment</p>
         <div class="tweet_box tweet_add">
             <div class="tweet_left">
@@ -66,43 +74,7 @@ if (isset ($_GET['id'])) {
                 </form>
             </div>
         </div>
-    </div>
-</div>
-<!-- update textarea --------------------------------------------------------------------------------------------->
-<div id="popup-window" class='popup-close'>
-    <div id="close-btn">
-        &times;
-    </div>
-    <div class="tweet_display">
-        <div class="main">
-            <div class="tweet_body ">
-                <form method="post" action="./commentFunctions/updateComment.php" enctype="multipart/form-data">
-                    <input type="hidden" id='updatecomment-id' name='comment_id'></input>
-                    <input type="hidden" value="<?php echo $post_id ?>" name='post_id'></input>
-                    <textarea name="comment_text" id="updatecomment-text" cols="100%" rows="3"
-                        placeholder="update"></textarea>
-                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-                    <script
-                        src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
-                    <div class="tweet_icons-wrapper">
-                        <div class="tweet_icons-add">
-                            <!-- <a href=""> <i class="fa-regular fa-image"></i></a> -->
-                            <label for="img-update-input" class="inputimg"><i
-                                    class="fa-regular fa-image icon"></i></label>
-                            <input type="file" name="image-update" class="img-input" id="img-update-input"
-                                accept="image/*">
-
-                        </div>
-                        <div id="image-update-preview"></div>
-                        <!-- <i class="fa-regular fa-face-smile"></i> -->
-                    </div>
-                    <button class="btn btn-dark" type="submit" name="btn_update_comment">opslaan</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-<?php
+        <?php
 // $selectcomment = $conn->prepare("SELECT comments.* , users.username FROM comments INNER JOIN users ON comments.commentBy = users.user_id WHERE comments.commentBy = :user_id ORDER BY comment_id DESC");
 $selectcomment = $conn->prepare("SELECT * FROM comments where post_id= :post_id");
 $selectcomment->bindParam(":post_id", $post_id);
@@ -122,11 +94,12 @@ while ($row = $selectcomment->fetch(PDO::FETCH_ASSOC)) {
     <div class="tweet_left"><img src="RAlogo.jpeg"></div>
 
     <div class="tweet_body">
+        
         <div class="tweet_header">
             <p class="tweet_name">naam
                 <?php $user_name ?>
             </p>
-            <p class="tweet_username"> @Cipfry</p>
+            <p class="tweet_username"> @code</p>
             <p class="tweet_date">
                 <?php echo $comment_date = date('H d'), strtotime($comment_date); ?>
             </p>
@@ -138,7 +111,7 @@ while ($row = $selectcomment->fetch(PDO::FETCH_ASSOC)) {
         <?php
         if ($comment_img) {
             ?>
-        <img class="post-img" id="uploadpost-img" src='<?php echo $comment_img ?>'>
+        <img class="post-img" id="uploadpost-img" src='commentFunctions/<?php echo $comment_img ?>'>
         <?php
         }
         ?>
@@ -169,6 +142,42 @@ while ($row = $selectcomment->fetch(PDO::FETCH_ASSOC)) {
     <?php
 }
 ?>
+    </div>
+</div>
+<!-- update textarea --------------------------------------------------------------------------------------------->
+<div id="popup-window" class='popup-close'>
+    <div id="close-btn">
+        &times;
+    </div>
+    <div class="tweet_display">
+        <div class="main">
+            <div class="tweet_body ">
+                <form method="post" action="./commentFunctions/updateComment.php" enctype="multipart/form-data">
+                    <input type="hidden" id='updatecomment-id' name='comment_id'></input>
+                    <input type="hidden" value="<?php echo $post_id ?>" name='post_id'></input>
+                    <textarea name="comment_text" id="updatecomment-text" cols="100%" rows="3"
+                        placeholder="update"></textarea>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
+                    <div class="tweet_icons-wrapper">
+                        <div class="tweet_icons-add">
+                            <!-- <a href=""> <i class="fa-regular fa-image"></i></a> -->
+                            <label for="img-update-input" class="inputimg"><i
+                                    class="fa-regular fa-image icon"></i></label>
+                            <input type="file" name="image-update" class="img-input" id="img-update-input"
+                                accept="image/*">
+
+                        </div>
+                        <div id="image-update-preview"></div>
+                        <!-- <i class="fa-regular fa-face-smile"></i> -->
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit" name="btn_update_comment">opslaan</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- Update Post -->
 
@@ -176,7 +185,7 @@ while ($row = $selectcomment->fetch(PDO::FETCH_ASSOC)) {
     const closeButton = document.getElementById('close-btn')
 
     closeButton.addEventListener('click', () => {
-        document.getElementById("blur").classList.remove("active");
+        document.getElementById("blur").classList.remove("activeUpdate");
         document.getElementById('popup-window').classList.remove('popup-show')
         document.getElementById('popup-window').classList.add('popup-close')
     })
@@ -219,13 +228,13 @@ while ($row = $selectcomment->fetch(PDO::FETCH_ASSOC)) {
     function updateComment(comment, commentId, commentImg) {
         // console.log(postId, postText)
         const blur = document.getElementById("blur");
-        blur.classList.add('active');
+        blur.classList.add('activeUpdate');
         document.getElementById("updatecomment-id").value = commentId;
         document.getElementById("updatecomment-text").innerText = comment;
 
         let img = document.createElement('img');
         img.classList.add('s-img')
-        img.src = commentImg;
+        img.src = "commentFunctions/" + commentImg;
         document.getElementById('image-update-preview').innerHTML = ''; // Clear previous preview
         document.getElementById('image-update-preview').appendChild(img);
 

@@ -1,5 +1,5 @@
 <?php
-require ("Index.php");
+require ("../Index.php");
 if (isset ($_POST["btn_add_comment"])) {
 
     $comment = $_POST["comment_text"];

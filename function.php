@@ -2,14 +2,17 @@
 require ("Index.php");
 session_start();
 
-$user_id = $_SESSION['user_id'];
-if (isset ($_POST["btn_add_post"])) {
+$user_id = $_SESSION['Id'];
+// if (isset($_SESSION['Id'])) {
+// 	$user_id = $_SESSION['Id'];
+// }
+if (isset($_POST["btn_add_post"])) {
 
 	$Post_Text = $_POST["post_text"];
 	// if ($Post_Text != "") {
 	// ......uploadImage......
 
-	if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+	if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
 
 		$target_dir = "uploadImages/";
 		$target_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -25,7 +28,7 @@ if (isset ($_POST["btn_add_post"])) {
 
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
-			$insertPost = $conn->prepare("INSERT INTO posts (user_id, post_content, upload_image, post_date) VALUES (:user_id, :post_content,:upload_image, now())");
+			$insertPost = $conn->prepare("INSERT INTO posts (user_id, post_content, Upload_image, post_date) VALUES (:user_id, :post_content,:upload_image, now())");
 			$insertPost->bindParam(":user_id", $user_id);
 			$insertPost->bindParam(":post_content", $Post_Text);
 			$insertPost->bindParam(":upload_image", $target_file);
@@ -34,7 +37,7 @@ if (isset ($_POST["btn_add_post"])) {
 
 
 			// echo "Post added successfully with image.";
-		} 
+		}
 		// else {
 		// 	echo "Sorry, there was an error uploading your file.";
 		// }
@@ -142,12 +145,12 @@ if (isset ($_POST["btn_add_post"])) {
 
 	<!-- Update Post -->
 	<?php
-	if (isset ($_POST["btn_update_post"])) {
+	if (isset($_POST["btn_update_post"])) {
 
 		if ($_POST["post_text"] != "") {
 
 
-			if (isset ($_FILES["image-update"]) && $_FILES["image-update"]["error"] == 0) {
+			if (isset($_FILES["image-update"]) && $_FILES["image-update"]["error"] == 0) {
 
 				$target_up = "uploadImages/";
 				$target_file = $target_up . basename($_FILES["image-update"]["name"]);
@@ -185,7 +188,7 @@ if (isset ($_POST["btn_add_post"])) {
 				$updatePost->execute();
 
 				// echo "Post added successfully.";
-
+	
 			}
 		}
 		//! Fix refresh after update ----------------------------------------------->

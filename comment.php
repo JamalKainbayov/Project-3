@@ -10,15 +10,15 @@ if (isset($_GET['id'])) {
 
     // $comment_id = $_SESSION['comment_id'];
 
-    $selectPost = $conn->prepare("SELECT posts.* , users.username FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE post_id = :post_id");
+    $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE post_id = :post_id");
     $selectPost->bindParam(":post_id", $post_id);
     $selectPost->execute();
 
     $row = $selectPost->fetch(PDO::FETCH_ASSOC);
     $post_text = $row['post_content'];
     $post_date = $row['post_date'];
-    $post_img = $row['upload_image'];
-    $user_name = $row['username'];
+    $post_img = $row['Upload_image'];
+    $user_name = $row['Username'];
     $post_id = $row['post_id'];
 
     $selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
@@ -28,6 +28,10 @@ if (isset($_GET['id'])) {
 
 
     // require_once ("tweetStructure.php");
+    $selectComment = $conn->prepare("SELECT * FROM comments WHERE post_id = :post_id");
+    $selectComment->bindParam(":post_id", $post_id);
+    $selectComment->execute();
+    $comments_count = $selectComment->rowCount();
 }
 ?>
 

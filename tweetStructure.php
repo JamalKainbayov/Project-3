@@ -5,6 +5,8 @@ $_GET['upload_image'] = $post_img;
 $_GET['Username'] = $user_name;
 $_GET['post_id'] = $post_id;
 $_GET['likesCount'] = $likes_count;
+$_GET['comments_count'] = $comments_count;
+
 ?>
 <div class="tweet_box">
     <div class="tweet_left"><img src="RAlogo.jpeg"></div>
@@ -31,35 +33,40 @@ $_GET['likesCount'] = $likes_count;
         }
         ?>
 
-        <div class="tweet_icons">
-
-        <?php
+<div class="tweet_icons">
+            <?php
             $selectLike = $conn->prepare(query: "SELECT * FROM likes WHERE user_id =:user_id AND post_id= :post_id");
             $selectLike->bindParam(":post_id", $post_id);
             $selectLike->bindParam(":user_id", $user_id);
             $selectLike->execute();
 
 
-            // echo $selectLike->rowCount();
-            if ($selectLike->rowCount() == 1):
-                $row = $selectLike->fetch(PDO::FETCH_ASSOC); {
-                    $like_id = $row['like_id'];
-                }
+            if ($selectLike->rowCount()==1):
+                $row = $selectLike->fetch(PDO::FETCH_ASSOC);
+                $like_id = $row['like_id'];
                 ?>
-                <span class="unlike fa-solid fa-heart" data-id="<?php echo $like_id; ?>"></span>
-                <span class="like fa-regular fa-heart hide" id="<?php echo $post_id; ?>" data-id="<?php echo $post_id; ?>"
+
+                <span class="unlike fa-solid fa-heart" data-id="<?php echo $post_id; ?>"
+                    data-user="<?php echo $user_id; ?>"></span>
+                <span class="like fa-regular fa-heart hide" data-id="<?php echo $post_id; ?>"
                     data-user="<?php echo $user_id; ?>"></span>
             <?php else: ?>
                 <!-- user has not yet liked post -->
                 <span class="unlike fa-solid fa-heart hide" data-id="<?php echo $like_id; ?>"></span>
-                <span class="like fa-regular fa-heart" id="<?php echo $post_id; ?>" data-id="<?php echo $post_id; ?>"
+                <span class="like fa-regular fa-heart" data-id="<?php echo $post_id; ?>"
                     data-user="<?php echo $user_id; ?>"></span>
             <?php endif ?>
-            <span class="like-count">
+            <span class="likes-count">
                 <?php echo $likes_count; ?>
             </span>
-            
+
+
             <a href="comment.php?id=<?php echo $row['post_id']; ?>"><i class="fa-regular fa-comment"></i></a>
+
+
+            <span class="comments-count">
+                <?php echo $comments_count ?>
+            </span>
         </div>
 
 
@@ -88,9 +95,7 @@ $_GET['likesCount'] = $likes_count;
         $('.like').unbind().click(function () {
             let post_id = $(this).data('id');
             let user_id = $(this).data('user');
-            console.log(user_id);
             $post = $(this);
-            console.log(post_id);
             $.ajax({
                 url: 'updateLike.php',
                 type: 'post',
@@ -100,7 +105,7 @@ $_GET['likesCount'] = $likes_count;
                     'user_id': user_id
                 },
                 success: function (response) {
-                    $post.parent().find('span.likes_count').text(response + " likes");
+                    $post.parent().find('span.likes-count').text(parseInt($post.parent().find('span.likes-count').text()) + 1);
                     $post.addClass('hide');
                     $post.siblings().removeClass('hide');
                 }
@@ -110,18 +115,19 @@ $_GET['likesCount'] = $likes_count;
 
         // when the user clicks on unlike
         $('.unlike').unbind().click(function () {
-            let like_id = $(this).data('id');
+            let post_id = $(this).data('id');
+            let user_id = $(this).data('user');
             $post = $(this);
-            console.log(like_id);
             $.ajax({
                 url: 'updateLike.php',
                 type: 'post',
                 data: {
                     'unliked': 1,
-                    'like_id': like_id
+                    'post_id': post_id,
+                    'user_id': user_id
                 },
                 success: function (response) {
-                    $post.parent().find('span.likes_count').text(response + " likes");
+                    $post.parent().find('span.likes-count').text(parseInt($post.parent().find('span.likes-count').text()) - 1);
                     $post.addClass('hide');
                     $post.siblings().removeClass('hide');
                 }

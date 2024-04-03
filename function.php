@@ -6,8 +6,8 @@ $user_id = $_SESSION['user_id'];
 if (isset ($_POST["btn_add_post"])) {
 
 	$Post_Text = $_POST["post_text"];
-	// if ($Post_Text != "") {
-	// ......uploadImage......
+
+
 
 	if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
 

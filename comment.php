@@ -28,7 +28,7 @@ if (isset ($_GET['id'])) {
 
 <!-- add textarea --------------------------------------------------------------------------------------------->
 <div class="grid-container" id="blur">
-    <div class="sidebar">
+    <div class="sideBar">
     </div>
     <div class="main">
         <p class="page_titel">comment</p>

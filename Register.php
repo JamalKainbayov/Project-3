@@ -15,24 +15,41 @@
     <input type="text" name="username" autocomplete="off" required><br>
     <label for="password">Password:</label>
     <input type="password" name="password" required><br>
-            <button type="submit">Register</button>
+    <button type="submit">Register</button>
 </form>
 </body>
 <?php
 include "conn.php";
 
-if (!empty($_POST["username"]) && isset($_POST["password"])) {
-    $encrypt_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
-    $insert_user->bindParam(":gebruikersnaam", $_POST["username"]);
-    $insert_user->bindParam(":wachtwoord", $encrypt_password);
 
-    if ($insert_user->execute()) {
-        header("Location: Login.php");
-        exit;
+        $check_username_query = $conn->prepare("SELECT COUNT(*) FROM user_info WHERE Username = :username");
+        $check_username_query->bindParam(':username', $username);
+        $check_username_query->execute();
+        $count = $check_username_query->fetchColumn();
+
+        if ($count > 0) {
+            echo "Username already exists. Please choose a different username.";
+        } else {
+            $encrypt_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+            $insert_user->bindParam(":gebruikersnaam", $username);
+            $insert_user->bindParam(":wachtwoord", $encrypt_password);
+
+            if ($insert_user->execute()) {
+                header("Location: Login.php");
+                exit;
+            } else {
+                echo "Error occurred while registering.";
+            }
+        }
     } else {
-        echo "Error occurred while registering.";
+        echo "Username or password cannot be empty.";
     }
 }
 ?>

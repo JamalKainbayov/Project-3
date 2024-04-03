@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/main.css"> <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="Css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <title>Login</title>
 </head>
@@ -22,11 +22,6 @@ session_start();
 
 require "conn.php";
 
-//
-//if ($conn) {
-//    die("Connection failed: " . $conn);
-//}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -36,25 +31,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql->execute();
     $result = $sql->fetch();
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-
-            $_SESSION['username'] = $username;
-            header("Location: function.php");
-        } else {
-            echo "Invalid username or password.";
-        }
-    } else {
-        echo "Invalid username or password.";
+        if ($result) {
+            if (password_verify($password, $result['Password'])) {
+                session_start();
+                $_SESSION['username'] = $username;
+                header("Location: function.php");
+                exit();
+            } else {
+                echo "Invalid username or password.";
+            }
 
 }
+
 ?>
 </html>
-
-
-
-
-
-
-

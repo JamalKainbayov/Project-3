@@ -8,8 +8,8 @@ require ("Index.php");
         $row = $selectPost->fetch(PDO::FETCH_ASSOC);
         $post_text = $row['post_content'];
         $post_date = $row['post_date'];
-        $post_img = $row['upload_image'];
-        $user_name = $row['username'];
+        $post_img = $row['Upload_image'];
+        $user_name = $row['Username'];
         //! Remove the image -------------------------------------------------->
         unlink($post_img);
         //! Remove the image -------------------------------------------------->

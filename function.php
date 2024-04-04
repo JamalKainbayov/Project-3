@@ -17,7 +17,7 @@ if (isset($_POST["btn_add_post"])) {
 		$target_dir = "uploadImages/";
 		$target_file = $target_dir . basename($_FILES["image"]["name"]);
 
-		echo ($target_file);
+		// echo ($target_file);
 
 		$name = $_FILES["image"]["name"];
 		$tmp = explode('.', $name);

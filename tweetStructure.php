@@ -1,7 +1,7 @@
 <?php
 $_GET['post_content'] = $post_text;
 $_GET['post_date'] = $post_date;
-$_GET['upload_image'] = $post_img;
+$_GET['Upload_image'] = $post_img;
 $_GET['Username'] = $user_name;
 $_GET['post_id'] = $post_id;
 $_GET['likesCount'] = $likes_count;
@@ -18,7 +18,7 @@ $_GET['comments_count'] = $comments_count;
             </p>
             <p class="tweet_username"> @Chirpfy</p>
             <p class="tweet_date">
-                <?php echo $post_date = date('H d'), strtotime($post_date); ?>
+                <?php echo $post_date; ?>
             </p>
         </div>
 
@@ -33,7 +33,7 @@ $_GET['comments_count'] = $comments_count;
         }
         ?>
 
-<div class="tweet_icons">
+        <div class="tweet_icons">
             <?php
             $selectLike = $conn->prepare(query: "SELECT * FROM likes WHERE user_id =:user_id AND post_id= :post_id");
             $selectLike->bindParam(":post_id", $post_id);
@@ -41,7 +41,7 @@ $_GET['comments_count'] = $comments_count;
             $selectLike->execute();
 
 
-            if ($selectLike->rowCount()==1):
+            if ($selectLike->rowCount() == 1):
                 $row = $selectLike->fetch(PDO::FETCH_ASSOC);
                 $like_id = $row['like_id'];
                 ?>
@@ -52,7 +52,8 @@ $_GET['comments_count'] = $comments_count;
                     data-user="<?php echo $user_id; ?>"></span>
             <?php else: ?>
                 <!-- user has not yet liked post -->
-                <span class="unlike fa-solid fa-heart hide" data-id="<?php echo $like_id; ?>"></span>
+                <span class="unlike fa-solid fa-heart hide" data-id="<?php echo $post_id; ?>"
+                    data-user="<?php echo $user_id; ?>"></span>
                 <span class="like fa-regular fa-heart" data-id="<?php echo $post_id; ?>"
                     data-user="<?php echo $user_id; ?>"></span>
             <?php endif ?>
@@ -78,7 +79,7 @@ $_GET['comments_count'] = $comments_count;
             <button class="dropbtn"><span class="fa fa-ellipsis-h"></span></button>
             <div class="dropdown-content">
                 <a href="javascript:void(0);"
-                    onclick="updatePost('<?php echo $row['post_content']; ?>', '<?php echo $row['post_id']; ?>', '<?php echo $row['upload_image']; ?>')"><i
+                    onclick="updatePost('<?php echo $row['post_content']; ?>', '<?php echo $row['post_id']; ?>', '<?php echo $row['Upload_image']; ?>')"><i
                         class="fa-regular fa-pen-to-square edit"></i><span> edit</span></a>
                 <a href="deleteTweet.php?del=<?php echo $row['post_id']; ?>"><i
                         class="fa-solid fa-xmark delete"></i><span> delete</span></a>

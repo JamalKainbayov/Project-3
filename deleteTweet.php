@@ -9,7 +9,7 @@ require ("Index.php");
         $post_text = $row['post_content'];
         $post_date = $row['post_date'];
         $post_img = $row['Upload_image'];
-        $user_name = $row['Username'];
+        // $user_name = $row['Username'];
         //! Remove the image -------------------------------------------------->
         unlink($post_img);
         //! Remove the image -------------------------------------------------->

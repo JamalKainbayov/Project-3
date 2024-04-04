@@ -171,6 +171,7 @@ select:focus{
 .like, .unlike, .likes_count {
   color: crimson;
   align-self: center;
+  cursor: pointer;
 }
 .hide {
   display: none;

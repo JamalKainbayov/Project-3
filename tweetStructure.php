@@ -6,7 +6,6 @@ $_GET['Username'] = $user_name;
 $_GET['post_id'] = $post_id;
 $_GET['likesCount'] = $likes_count;
 $_GET['comments_count'] = $comments_count;
-
 ?>
 <div class="tweet_box">
     <div class="tweet_left"><img src="RAlogo.jpeg"></div>
@@ -26,11 +25,12 @@ $_GET['comments_count'] = $comments_count;
             <?php echo $post_text; ?>
         </p>
         <?php
-        if ($post_img) {
+        if ($post_img):
             ?>
-            <img class="post-img" id="uploadpost-img" src='<?php echo $post_img ?>'>
+            <img class="post-img" src='<?php echo $post_img ?>'>
+            
             <?php
-        }
+        endif
         ?>
 
         <div class="tweet_icons">
@@ -39,7 +39,6 @@ $_GET['comments_count'] = $comments_count;
             $selectLike->bindParam(":post_id", $post_id);
             $selectLike->bindParam(":user_id", $user_id);
             $selectLike->execute();
-
 
             if ($selectLike->rowCount() == 1):
                 $row = $selectLike->fetch(PDO::FETCH_ASSOC);
@@ -79,9 +78,9 @@ $_GET['comments_count'] = $comments_count;
             <button class="dropbtn"><span class="fa fa-ellipsis-h"></span></button>
             <div class="dropdown-content">
                 <a href="javascript:void(0);"
-                    onclick="updatePost('<?php echo $row['post_content']; ?>', '<?php echo $row['post_id']; ?>', '<?php echo $row['Upload_image']; ?>')"><i
+                    onclick="updatePost('<?php echo $post_text; ?>', '<?php echo $post_id; ?>', '<?php echo $post_img; ?>')"><i
                         class="fa-regular fa-pen-to-square edit"></i><span> edit</span></a>
-                <a href="deleteTweet.php?del=<?php echo $row['post_id']; ?>"><i
+                <a href="deleteTweet.php?del=<?php echo $post_id; ?>"><i
                         class="fa-solid fa-xmark delete"></i><span> delete</span></a>
             </div>
 

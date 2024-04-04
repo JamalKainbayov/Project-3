@@ -1,38 +1,33 @@
 <?php
-require_once ("Index.php");
-
+require ("Index.php");
 session_start();
+
 $post_id = $_GET['id'];
+$user_id = $_SESSION['Id'];
 
-if (isset($_GET['id'])) {
-    $post_id = $_GET['id'];
+$selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE post_id = :post_id");
+$selectPost->bindParam(":post_id", $post_id);
+$selectPost->execute();
 
+$row = $selectPost->fetch(PDO::FETCH_ASSOC);
+$post_text = $row['post_content'];
+$post_date = $row['post_date'];
+$post_img = $row['Upload_image'];
+$user_name = $row['Username'];
+$post_id = $row['post_id'];
 
-    // $comment_id = $_SESSION['comment_id'];
-
-    $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE post_id = :post_id");
-    $selectPost->bindParam(":post_id", $post_id);
-    $selectPost->execute();
-
-    $row = $selectPost->fetch(PDO::FETCH_ASSOC);
-    $post_text = $row['post_content'];
-    $post_date = $row['post_date'];
-    $post_img = $row['Upload_image'];
-    $user_name = $row['Username'];
-    $post_id = $row['post_id'];
-
-    $selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
-    $selectLikes->bindParam(":post_id", $post_id);
-    $selectLikes->execute();
-    $likes_count = $selectLikes->rowCount();
+$selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
+$selectLikes->bindParam(":post_id", $post_id);
+$selectLikes->execute();
+$likes_count = $selectLikes->rowCount();
 
 
-    // require_once ("tweetStructure.php");
-    $selectComment = $conn->prepare("SELECT * FROM comments WHERE post_id = :post_id");
-    $selectComment->bindParam(":post_id", $post_id);
-    $selectComment->execute();
-    $comments_count = $selectComment->rowCount();
-}
+// require_once ("tweetStructure.php");
+$selectComment = $conn->prepare("SELECT * FROM comments WHERE post_id = :post_id");
+$selectComment->bindParam(":post_id", $post_id);
+$selectComment->execute();
+$comments_count = $selectComment->rowCount();
+
 ?>
 
 <!-- add textarea --------------------------------------------------------------------------------------------->
@@ -88,8 +83,8 @@ if (isset($_GET['id'])) {
             $comment_text = $row['comment'];
             $comment_date = $row['commenttime'];
             $comment_img = $row['Image_upload'];
-           
-            
+
+
             ?>
 
 
@@ -114,7 +109,7 @@ if (isset($_GET['id'])) {
                 <?php
                 if ($comment_img) {
                     ?>
-                <img class="post-img" id="uploadpost-img" src='commentFunctions/<?php echo $comment_img ?>'>
+                <img class="post-img" src='commentFunctions/<?php echo $comment_img ?>'>
                 <?php
                 }
                 ?>
@@ -218,10 +213,6 @@ if (isset($_GET['id'])) {
         };
         reader.readAsDataURL(file);
     }
-</script>
-<script type="text/javascript">
-    $('#update').emojioneArea({ pickerPosition: 'bottom' });
-
 </script>
 <script type="text/javascript">
     $('#update').emojioneArea({ pickerPosition: 'bottom' });

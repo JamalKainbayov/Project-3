@@ -12,7 +12,7 @@
     <div class="center">
         <a href="#"> <i class="fa-solid fa-arrow-left"></i></a>
         <h3>Koko Tengaa Po</h3> </div> <div class="grijs">
-            <img src="images/profiel.png" alt="profiel foto"> </div>
+            <img src="profiel.png" alt="profiel foto"> </div>
             <button class="edit-profile-btn">Edit Profile</button>
         <div class="profile7"> <h3>Username</h3> <h5>E-mail</h5> <h7>Joined January 2019</h7>
         <div class="button-container"> <button class="button">Following: 69</button>

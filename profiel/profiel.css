@@ -1,0 +1,157 @@
+*{ padding: 0; 
+    margin: 0; 
+    color:white; 
+    font-family: sans-serif;
+} 
+
+body{ 
+    background-color: #001; 
+    display: flex; 
+} 
+
+.img-box{ 
+    width: 80px; 
+    height: 120px;
+    border: 2px solid black; 
+} 
+
+img{ 
+    width: 120px; 
+    height: 120px; 
+    border: 2px solid black; 
+} 
+
+.menu{ 
+    background-color: black; 
+    width: 260px; 
+    height: 100vh; 
+    padding: 20px; 
+    overflow: hidden; transition: .5s;
+} 
+
+.menu:hover{ 
+    width: 280px; 
+} 
+
+ul{ 
+    list-style: none;
+    height: 95%; 
+} 
+
+ul li a{ 
+    display:block; 
+    text-decoration: none; 
+    padding: 10px; 
+    margin:10px 0; 
+    border-radius: 8px; 
+    display: flex; 
+    align-items: center; 
+    gap: 40px;
+}
+
+ul li a:hover,.active,.data-info .box:hover,td:hover{ 
+    background-color: #ffffff55; 
+} 
+.log-out{ 
+    margin-top: 20px; 
+    padding-top: 20px; 
+    font-size: 20px; 
+    background-color:rgb(115, 94, 134); 
+    width: 80%; 
+}
+
+ul li a i { 
+    font-size: 30px; 
+} 
+.content{ 
+    background-color: white; 
+    width: 1300px; 
+    color: #001; 
+}
+
+.center h3{ 
+    color:black; 
+    font-family: sans-serif; 
+    font-weight: 5000px; 
+}
+
+.center i{ 
+    color:black; 
+    padding-left: 20px; 
+    font-size: 22px; 
+} 
+
+.center{ 
+    border: 1px solid rgb(222, 217, 217); 
+    display: flex; 
+    font-size: 22px; 
+    font: weight 2000px; 
+    gap: 25px; 
+    padding-top: 15px; 
+} 
+
+.grijs{ 
+    background-color: rgb(228, 228, 228); 
+    height: 250px; 
+} 
+
+.grijs img{ 
+    margin-left: 35px; 
+    margin-top: 190px; 
+    border-radius: 50%; 
+    border: 5px solid white; 
+} 
+
+.edit-profile-btn { 
+    padding: 10px 20px; 
+    background-color: rgb(228, 228, 228); 
+    color: black; 
+    border-radius: 10px; 
+    margin-left: 1050px;
+    margin-top: 10px; 
+    font-size: 18px; 
+    border: 5px solid white; 
+    font-weight: 600; 
+} 
+
+.profile7{ 
+    max-width: 300px; 
+    margin-top: 15px; 
+    margin-left: 35px; 
+    padding: 20px; 
+    border-radius: 10px; 
+} 
+
+.profile7 h3{ 
+    color: black; 
+} 
+
+.profile7 h5{ 
+    color: black; 
+} 
+
+.profile7 h7{ 
+    color: black; 
+} 
+.profile h1 { 
+    margin-bottom: 10px; 
+    color: #000; 
+} 
+
+.profile p { 
+    margin-bottom: 20px; 
+    color: black; 
+} 
+
+.button-container { 
+    display: flex; 
+    gap: 10px; 
+    margin-right: 10px;
+} 
+
+.button { 
+    padding: 10px 20px; 
+    color:black; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; } 

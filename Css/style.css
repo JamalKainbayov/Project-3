@@ -40,21 +40,28 @@ textarea{
     border: 1px solid var(--twitter-background);
 }
 .grid-container{
-width: 100%;
-/* max-width: 1350px; */
-margin: 0 auto;
-display: grid;
-grid-template-columns: 0.8fr 1.5fr 0.4fr;
-grid-template-rows: 0.8fr 1.5fr 0.4fr;
-gap: 0px 0px;
-grid-template-areas: 
-"sideBar main right_sideBar ."
-"sideBar main right_sideBar ."
-"sideBar main right_sideBar .";
-}
-.sideBar{ grid-area:sidebar;}
-.main{ grid-area:main;}
-.right_sidebar{ grid-area:right_sidebar;}
+    /* width: 100%; */
+    /* max-width: 1350px; */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.6fr 1.6fr 1.2fr;
+    gap: 0px 0px;
+    grid-template-areas: 
+    "sideBar main right_sideBar"
+    "sideBar main right_sideBar"
+    "sideBar main right_sideBar";
+    }
+    .sideBar{ grid-area:sideBar;}
+    .main{ 
+        /* padding: 0 3rem; */
+        grid-area:main;}
+    .right_sidebar{ 
+        /* padding: 0 3rem; */
+        top: 20px;
+        height: 100vh;
+        position: sticky;
+        padding-left: 20px;
+        grid-area:right_sideBar;}
 
 .activeUpdate{
     filter:blur(2px);

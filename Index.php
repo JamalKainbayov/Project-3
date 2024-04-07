@@ -21,7 +21,7 @@ include("conn.php");
     <script defer src="navscript.js"></script>
 </head>
 <body>
- <?php require "nav.php" ?>
+ <?php require "Nav.php" ?>
 
 
 

@@ -6,7 +6,7 @@ if (isset ($_POST["btn_add_comment"])) {
     $post_id = $_POST['post_id'];
     if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
 
-        $target_dir = "uploadImages/";
+        $target_dir = "commentsImages/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
         $name = $_FILES["image"]["name"];
@@ -23,7 +23,7 @@ if (isset ($_POST["btn_add_comment"])) {
             $insertcomment->bindParam(":upload_image", $target_file);
             $insertcomment->bindParam(":post_id", $post_id);
             $insertcomment->execute();
-            echo "Post added successfully with image.";
+            echo "comment added successfully with image.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }

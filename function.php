@@ -1,6 +1,6 @@
 <?php
 require ("Index.php");
-session_start();
+
 
 $user_id = $_SESSION['Id'];
 // if (isset($_SESSION['Id'])) {

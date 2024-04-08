@@ -1,3 +1,5 @@
+<?php include "conn.php"; ?>
+<?php session_start(); ?>
 <nav>
     <div class="sidebar">
         <div class="logo_content">
@@ -54,9 +56,9 @@
             <div class="profile">
                 <div class="profile_details">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">   
-                    <div class="name">User</div>
+                    <div class="name"><?php echo $_SESSION['username']?></div>
                 </div>
-                <i class='bx bx-log-out' id="log_out"></i>    
+                <i class='bx bx-log-out' id="log_out"><?php session_destroy(); ?></i>
             </div>            
         </div>
     </div>

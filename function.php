@@ -102,7 +102,9 @@ if (isset($_POST["btn_add_post"])) {
 			?>
 
 		</div>
-
+		<div class="right_sidebar">
+			<h4>Third section</h4>
+		</div>
 	</div>
 	<!-- update textarea -->
 	<div id="popup-window" class='popup-close'>
@@ -203,7 +205,7 @@ if (isset($_POST["btn_add_post"])) {
 		const closeButton = document.getElementById('close-btn')
 
 		closeButton.addEventListener('click', () => {
-			document.getElementById("blur").classList.remove("active");
+			document.getElementById("blur").classList.remove("activeUpdate");
 			document.getElementById('popup-window').classList.remove('popup-show')
 			document.getElementById('popup-window').classList.add('popup-close')
 		})
@@ -241,7 +243,6 @@ if (isset($_POST["btn_add_post"])) {
 
 	<script>
 		function updatePost(postText, postId, postImg) {
-			console.log(postId, postText)
 			const blur = document.getElementById("blur");
 			blur.classList.add('activeUpdate');
 			document.getElementById("updatepost-id").value = postId;

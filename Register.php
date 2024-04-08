@@ -1,3 +1,21 @@
+<?php
+include "conn.php";
+
+if (!empty($_POST["username"]) && isset($_POST["password"])) {
+    $encrypt_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
+    $insert_user->bindParam(":gebruikersnaam", $_POST["username"]);
+    $insert_user->bindParam(":wachtwoord", $encrypt_password);
+
+    if ($insert_user->execute()) {
+        header("Location: Login.php");
+        exit; // Make sure to exit after redirection
+    } else {
+        echo "Error occurred while registering.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,22 +36,5 @@
             <button type="submit">Register</button>
 </form>
 </body>
-<?php
-include "conn.php";
 
-if (!empty($_POST["username"]) && isset($_POST["password"])) {
-    $encrypt_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-    $insert_user = $conn->prepare("INSERT INTO user_info (Username, Password) VALUES (:gebruikersnaam, :wachtwoord)");
-    $insert_user->bindParam(":gebruikersnaam", $_POST["username"]);
-    $insert_user->bindParam(":wachtwoord", $encrypt_password);
-
-    if ($insert_user->execute()) {
-        header("Location: Login.php");
-        exit; // Make sure to exit after redirection
-    } else {
-        echo "Error occurred while registering.";
-    }
-}
-?>
 </html>

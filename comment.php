@@ -37,6 +37,7 @@ $comments_count = $selectComment->rowCount();
     <div class="main">
         <p>
             <?php require_once ("tweetStructure.php"); ?>
+          
         </p>
         <p class="page_titel">comment</p>
         <div class="tweet_box tweet_add">
@@ -240,7 +241,5 @@ $comments_count = $selectComment->rowCount();
 
     }
 
-
-
-
+    
 </script>

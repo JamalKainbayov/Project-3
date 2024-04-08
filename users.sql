@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 mrt 2024 om 09:20
+-- Gegenereerd op: 02 apr 2024 om 22:20
 -- Serverversie: 10.4.27-MariaDB
 -- PHP-versie: 8.2.0
 
@@ -24,30 +24,68 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `post1`
+-- Tabelstructuur voor tabel `comments`
 --
 
-CREATE TABLE `post1` (
-  `post_id` int(11) NOT NULL,
-  `post_text` varchar(255) NOT NULL,
-  `post_date` date NOT NULL
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `comment` varchar(140) NOT NULL,
+  `Image_upload` text DEFAULT NULL,
+  `commentOn` int(11) NOT NULL,
+  `commentBy` int(11) NOT NULL,
+  `commenttime` datetime NOT NULL,
+  `post_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `post1`
+-- Gegevens worden geëxporteerd voor tabel `comments`
 --
 
-INSERT INTO `post1` (`post_id`, `post_text`, `post_date`) VALUES
-(1, 'raghdaawata', '2024-03-02'),
-(2, 'Vandaag is zondag', '2024-03-02'),
-(9, 'hi iedereen', '2024-03-02'),
-(10, 'Ik ben Raghda Awata.', '2024-03-03'),
-(12, 'hiiii', '2024-03-03'),
-(14, 'Goedemorgen', '2024-03-03'),
-(15, 'بسم الله الرحمن الرحيم', '2024-03-03'),
-(16, 'Ragghhah', '2024-03-04'),
-(17, 'hghfndkd', '2024-03-04'),
-(18, 'hiiiiiii', '2024-03-04');
+INSERT INTO `comments` (`comment_id`, `comment`, `Image_upload`, `commentOn`, `commentBy`, `commenttime`, `post_id`) VALUES
+(20, '💘llyngn🤗', NULL, 0, 0, '2024-03-24 23:44:40', 35),
+(22, 'new comment', NULL, 0, 0, '2024-03-25 15:29:47', 15),
+(25, 'fdfd', NULL, 0, 0, '2024-03-25 15:39:01', 15),
+(27, 'test raghda ', NULL, 0, 0, '2024-03-25 17:07:31', 33),
+(28, 'xxxxx', NULL, 0, 0, '2024-03-25 17:07:47', 38),
+(29, 'hi', 'uploadImages/171138288666210-5-6k.jpg', 0, 0, '2024-03-25 17:08:06', 38),
+(30, 'test uc', NULL, 0, 0, '2024-03-25 17:14:41', 40),
+(31, 'yyyyyyyyy', NULL, 0, 0, '2024-03-25 21:35:52', 38),
+(32, 'jh', NULL, 0, 0, '2024-03-25 21:38:05', 38),
+(33, 'nnnnnnnnnnnn', NULL, 0, 0, '2024-03-25 21:39:23', 38),
+(42, 'dsfsdf', NULL, 0, 0, '2024-03-25 23:07:54', 42),
+(44, 'hhhhhhhfffffffffffffffffffff', 'uploadImages/171140615929610-12-6k.jpg', 0, 0, '2024-03-25 23:08:40', 42),
+(45, 'qqqq', 'uploadImages/171140455325410-14-Night-6k.jpg', 0, 0, '2024-03-25 23:09:13', 42),
+(53, 'test5', NULL, 0, 0, '2024-03-27 09:44:03', 44),
+(54, 'testdf💓', NULL, 0, 0, '2024-03-27 10:00:02', 45),
+(55, 'ujhghbj', NULL, 0, 0, '2024-03-27 13:15:05', 43),
+(56, 'b', NULL, 0, 0, '2024-03-31 15:23:59', 65),
+(57, '', NULL, 0, 0, '2024-03-31 15:35:59', 62),
+(58, 'ij', NULL, 0, 0, '2024-03-31 15:36:05', 62),
+(59, 'kj', '../uploadImages/1711892515503379517.jpg', 0, 0, '2024-03-31 15:41:55', 62),
+(60, 'kjio', 'commentsImages/171189314623610-12-6k.jpg', 0, 0, '2024-03-31 15:48:42', 62),
+(61, 'mn', 'commentsImages/1711929198714379517.jpg', 0, 0, '2024-04-01 01:53:18', 65),
+(62, 'go test💘', 'commentsImages/17120513143562125122.jpg', 0, 0, '2024-04-02 10:42:08', 69),
+(63, 'test Raghda', NULL, 0, 0, '2024-04-02 10:52:20', 69),
+(64, 'test 854', NULL, 0, 0, '2024-04-02 15:44:12', 73);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `likes`
+--
+
+CREATE TABLE `likes` (
+  `like_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `likes`
+--
+
+INSERT INTO `likes` (`like_id`, `user_id`, `post_id`) VALUES
+(2, 1, 72);
 
 -- --------------------------------------------------------
 
@@ -59,7 +97,7 @@ CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `post_content` varchar(255) NOT NULL,
-  `Upload_image` text NOT NULL,
+  `upload_image` text NOT NULL,
   `post_date` timestamp NULL DEFAULT current_timestamp(),
   `likesCount` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,56 +106,48 @@ CREATE TABLE `posts` (
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `Upload_image`, `post_date`, `likesCount`) VALUES
-(3, 2, 'Ruba', '', '2024-03-04 21:40:51', NULL),
-(4, 5, 'hyhukvf', '', '2024-03-04 21:46:54', NULL),
-(9, 2, 'Alhamdullah', '', '2024-03-05 09:38:02', NULL),
-(10, 2, 'Goedemorgen', '', '2024-03-05 10:17:11', NULL),
-(13, 4, 'tweed test', '', '2024-03-05 21:51:47', NULL),
-(15, 4, 'drie', '', '2024-03-05 22:33:20', NULL);
+INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `upload_image`, `post_date`, `likesCount`) VALUES
+(66, 1, 'test', '', '2024-04-01 19:54:49', NULL),
+(67, 1, '💓test', 'uploadImages/171200596042010-14-Day-6k.jpg', '2024-04-01 21:12:40', NULL),
+(68, 1, 'eerst test 1🍍', 'uploadImages/171204568265210-12-6k.jpg', '2024-04-02 08:14:42', NULL),
+(69, 1, 'tweede test2🤗', '', '2024-04-02 08:15:02', NULL),
+(70, 1, 'mjeshflwe', '', '2024-04-02 08:38:48', NULL),
+(71, 1, 'tedsy', '', '2024-04-02 09:11:28', NULL),
+(72, 1, 'testststststststst👍🏽', '', '2024-04-02 09:13:34', NULL),
+(73, 1, 'trgjhfj', '', '2024-04-02 09:35:59', NULL);
+
+-- --------------------------------------------------------
+
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `users`
+-- Tabelstructuur voor tabel `user_info`
 --
 
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `Firstnaam` varchar(200) NOT NULL,
-  `Lastnaam` varchar(200) NOT NULL,
-  `usernaam` text DEFAULT NULL,
-  `Email` varchar(100) DEFAULT NULL,
-  `Passwoord` varchar(100) NOT NULL,
-  `Land` varchar(255) DEFAULT NULL,
-  `Geslacht` varchar(100) DEFAULT NULL,
-  `Geboortdatum` date DEFAULT NULL
+CREATE TABLE `user_info` (
+  `Id` int(11) NOT NULL,
+  `Username` text NOT NULL,
+  `Password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `users`
---
-
-INSERT INTO `users` (`user_id`, `Firstnaam`, `Lastnaam`, `usernaam`, `Email`, `Passwoord`, `Land`, `Geslacht`, `Geboortdatum`) VALUES
-(1, 'Yasser', 'Awata', NULL, 'yasser@gmail.com', 'yasser@33', 'Syria', 'Male', '1990-02-17'),
-(2, 'test', 'Awata', NULL, 'test@gmail.com', 'test12345', 'Syria', 'Male', '1992-11-01'),
-(3, 'Baraha', 'Awata', NULL, 'barahaawata@gmail.com', 'barahaa@55', 'Syria', 'female', '1989-12-12'),
-(4, 'Ruba', 'Awata', NULL, 'rubaawata@gmail.com', 'rubaaw@96', 'Syria', 'Female', '1996-06-26'),
-(5, 'Bahaa', 'Awata', NULL, 'bahaawata@gmail.com', 'bahaaAw@9', 'Syria', 'Male', '1999-02-24'),
-(6, 'Alyeen', 'Marawi', 'alyeen_marawi_458489', 'alyeenmarawi@gmail.com', 'alyeen112', 'Nederland', 'Female', '2021-11-24'),
-(7, 'Bachar', 'Marawi', 'bachar_marawi_868507', 'bacharmarawi@gmail.com', 'bachar123', 'Nederland', 'Male', '2017-11-18'),
-(8, 'Omeir', 'Marawi', 'omeir_marawi_291010', 'omeirmarawi@gmail.com', 'omeir1234', 'Nederland', 'Male', '2019-04-02'),
-(9, 'test', '2', 'test_2_192002', 'test2@gmail.com', 'testt1234', 'Nederland', 'Male', '2019-04-02');
-
+INSERT INTO `user_info` ('Id',`Username`,`Password` )VALUES(1,'test1@gmail.com','test1');
 --
 -- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexen voor tabel `post1`
+-- Indexen voor tabel `comments`
 --
-ALTER TABLE `post1`
-  ADD PRIMARY KEY (`post_id`);
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexen voor tabel `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`like_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `post_id` (`post_id`);
 
 --
 -- Indexen voor tabel `posts`
@@ -133,36 +163,55 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexen voor tabel `user_info`
+--
+ALTER TABLE `user_info`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT voor een tabel `post1`
+-- AUTO_INCREMENT voor een tabel `comments`
 --
-ALTER TABLE `post1`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT voor een tabel `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT voor een tabel `user_info`
+--
+ALTER TABLE `user_info`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Beperkingen voor tabel `posts`
+-- Beperkingen voor tabel `likes`
 --
-ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`Id`),
+  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,7 +22,7 @@
                 <span class="tooltip">Home</span>
             </li>
             <li>
-                <a href="profiel.php">
+                <a href="profiel/profiel.php">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>

@@ -1,10 +1,11 @@
 <?php
 require ("../Index.php");
-if (isset ($_POST["btn_add_comment"])) {
+if (isset($_POST["btn_add_comment"])) {
 
     $comment = $_POST["comment_text"];
     $post_id = $_POST['post_id'];
-    if (isset ($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+    $user_id = $_SESSION['Id'];
+    if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
 
         $target_dir = "commentsImages/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -17,20 +18,24 @@ if (isset ($_POST["btn_add_comment"])) {
 
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
-            $insertcomment = $conn->prepare("INSERT INTO comments (comment,Image_upload, post_id, commenttime) VALUES (:comment, :upload_image, :post_id, now())");
+            $insertcomment = $conn->prepare("INSERT INTO comments (comment,Image_upload, post_id,user_id, commenttime) VALUES (:comment, :upload_image, :post_id, :user_id,now())");
             // $insertPost->bindParam(":user_id", $user_id);
             $insertcomment->bindParam(":comment", $comment);
             $insertcomment->bindParam(":upload_image", $target_file);
             $insertcomment->bindParam(":post_id", $post_id);
+            $insertcomment->bindParam(":user_id", $user_id);
+
             $insertcomment->execute();
             echo "comment added successfully with image.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     } else {
-        $insertcomment = $conn->prepare("INSERT INTO comments (comment, post_id, commenttime) VALUES (:comment, :post_id, now())");
+        $insertcomment = $conn->prepare("INSERT INTO comments (comment, post_id, user_id,commenttime) VALUES (:comment, :post_id,:user_id, now())");
         $insertcomment->bindParam(":comment", $comment);
         $insertcomment->bindParam(":post_id", $post_id);
+        $insertcomment->bindParam(":user_id", $user_id);
+
         $insertcomment->execute();
         echo "comment added successfully.";
     }

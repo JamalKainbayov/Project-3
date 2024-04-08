@@ -13,13 +13,13 @@ require ("Index.php");
         //! Remove the image -------------------------------------------------->
         unlink($post_img);
         //! Remove the image -------------------------------------------------->
+        //? TODO: DELETE ALL COMMENTS AND LIKES RELATED TO THE POST */ 
+        
+        
+        //? TODO: DELETE ALL COMMENTS AND LIKES RELATED TO THE POST */
         $deletePost = $conn->prepare("DELETE FROM posts WHERE post_id = :post_id");
         $deletePost->bindParam(":post_id", $Del_ID);
         $deletePost->execute();
-        //? TODO: DELETE ALL COMMENT RELATED TO THE POST */ 
-
-        
-        //? TODO: DELETE ALL COMMENT RELATED TO THE POST */
         if ($deletePost) {
             header("location:function.php");
             exit;

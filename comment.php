@@ -1,9 +1,11 @@
 <?php
 require ("Index.php");
-session_start();
+// session_start();
 
 $post_id = $_GET['id'];
 $user_id = $_SESSION['Id'];
+// $username=$_SESSION['username'];
+
 
 $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE post_id = :post_id");
 $selectPost->bindParam(":post_id", $post_id);
@@ -12,9 +14,11 @@ $selectPost->execute();
 $row = $selectPost->fetch(PDO::FETCH_ASSOC);
 $post_text = $row['post_content'];
 $post_date = $row['post_date'];
-$post_img = $row['Upload_image'];
+$post_img = $row['upload_image'];
 $user_name = $row['Username'];
 $post_id = $row['post_id'];
+$user_id = $row['user_id'];
+
 
 $selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
 $selectLikes->bindParam(":post_id", $post_id);
@@ -37,7 +41,7 @@ $comments_count = $selectComment->rowCount();
     <div class="main">
         <p>
             <?php require_once ("tweetStructure.php"); ?>
-          
+
         </p>
         <p class="page_titel">comment</p>
         <div class="tweet_box tweet_add">
@@ -76,7 +80,11 @@ $comments_count = $selectComment->rowCount();
         </div>
         <?php
 
-        $selectcomment = $conn->prepare("SELECT * FROM comments where post_id= :post_id");
+        $selectcomment = $conn->prepare("SELECT comments.* , user_info.Username FROM comments INNER JOIN user_info ON comments.user_id = user_info.Id where post_id= :post_id");
+        // $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id ORDER BY post_id DESC");
+        
+        // $selectcomment = $conn->prepare("SELECT * FROM comments");
+        
         $selectcomment->bindParam(":post_id", $post_id);
         $selectcomment->execute();
 
@@ -84,6 +92,9 @@ $comments_count = $selectComment->rowCount();
             $comment_text = $row['comment'];
             $comment_date = $row['commenttime'];
             $comment_img = $row['Image_upload'];
+            $user_name = $row['Username'];
+            $user_id = $row['user_id'];
+
 
 
             ?>
@@ -124,21 +135,30 @@ $comments_count = $selectComment->rowCount();
             </div><br><br>
 
             <!-- Delete / Edit-->
-                <div class="tweet_del">
-                    <div class="dropdown">
-                        <button class="dropbtn"><span class="fa fa-ellipsis-h"></span></button>
-                        <div class="dropdown-content">
-                            <a href="javascript:void(0);"
-                                onclick="updateComment('<?php echo $row['comment']; ?>', '<?php echo $row['comment_id']; ?>', '<?php echo $row['Image_upload']; ?>')"><i
-                                    class="fa-regular fa-pen-to-square edit"></i><span> edit</span></a>
-                            <a href="./commentFunctions/deleteComment.php?del=<?php echo $row['comment_id']; ?>"><i
-                                    class="fa-solid fa-xmark delete"></i><span> delete</span></a>
-                        </div>
+                <?php
+                if ($user_id == $_SESSION['Id']):
 
+                    ?>
+                    <div class="tweet_del">
+                        <div class="dropdown">
+                            <button class="dropbtn"><span class="fa fa-ellipsis-h"></span></button>
+                            <div class="dropdown-content">
+                                <a href="javascript:void(0);"
+                                    onclick="updateComment('<?php echo $row['comment']; ?>', '<?php echo $row['comment_id']; ?>', '<?php echo $row['Image_upload']; ?>')"><i
+                                        class="fa-regular fa-pen-to-square edit"></i><span> edit</span></a>
+                                <a href="./commentFunctions/deleteComment.php?del=<?php echo $row['comment_id']; ?>"><i
+                                        class="fa-solid fa-xmark delete"></i><span> delete</span></a>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                    <?php
+                endif
+                ?>
+
             </div>
             <?php
+
         }
         ?>
     </div>
@@ -241,5 +261,5 @@ $comments_count = $selectComment->rowCount();
 
     }
 
-    
+
 </script>

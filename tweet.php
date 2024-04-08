@@ -1,12 +1,11 @@
 <?php
-// session_start();
 require_once ("Index.php");
+// session_start();
 
+// $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE posts.user_id = :user_id ORDER BY post_id DESC");
+$selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id ORDER BY post_id DESC");
 
-// $selectPost = $conn->prepare("SELECT posts.* , users.username FROM posts INNER JOIN users ON posts.user_id = users.user_id ORDER BY post_id DESC");
-
-$selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id WHERE posts.user_id = :user_id ORDER BY post_id DESC");
-$selectPost->bindParam(":user_id", $user_id);
+// $selectPost->bindParam(":user_id", $user_id);
 $selectPost->execute();
 
 
@@ -14,9 +13,11 @@ $selectPost->execute();
 while ($row = $selectPost->fetch(PDO::FETCH_ASSOC)) {
     $post_text = $row['post_content'];
     $post_date = $row['post_date'];
-    $post_img = $row['Upload_image'];
+    $post_img = $row['upload_image'];
     $user_name = $row['Username'];
     $post_id = $row['post_id'];
+    $user_id= $row['user_id'];
+    
     
     $selectLikes = $conn->prepare("SELECT * FROM likes WHERE post_id = :post_id");
     $selectLikes->bindParam(":post_id", $post_id);

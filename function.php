@@ -1,11 +1,9 @@
 <?php
 require ("Index.php");
-
-
+if (!isset($_SESSION['Id'])) {
+	header("Location: Login.php");
+}
 $user_id = $_SESSION['Id'];
-// if (isset($_SESSION['Id'])) {
-// 	$user_id = $_SESSION['Id'];
-// }
 if (isset($_POST["btn_add_post"])) {
 
 	$Post_Text = $_POST["post_text"];
@@ -34,7 +32,6 @@ if (isset($_POST["btn_add_post"])) {
 			$insertPost->bindParam(":upload_image", $target_file);
 			$insertPost->execute();
 			// require_once ("home.php");
-
 
 			// echo "Post added successfully with image.";
 		}

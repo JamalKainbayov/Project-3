@@ -1,5 +1,4 @@
 
-<?php require "Index.php" ?>
 <!DOCTYPE html> 
 <html lang="en">
 
@@ -28,4 +27,6 @@ function changeButtonText()
             else { submitButton.value = "Upload Image"; } }
 </script>
 </body>
+<?php
+require_once ("Index.php");?>
 </html>

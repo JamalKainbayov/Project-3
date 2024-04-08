@@ -1,10 +1,13 @@
+/* Twitter Style */
+
+/* Main Container */
 .update-profile-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
 }
 
-
+/* Form Styling */
 .update-profile-form {
     background-color: #fff;
     padding: 20px;
@@ -12,7 +15,7 @@
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
 }
 
-
+/* Form Inputs */
 .update-profile-form .form-group {
     margin-bottom: 15px;
 }
@@ -27,18 +30,32 @@
     border-radius: 3px;
 }
 
-
+/* Submit Button */
 .update-profile-form button[type="submit"] {
-    width: 100%;
-    background-color: black;
+    background-color: #1da1f2;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .update-profile-form button[type="submit"]:hover {
+    background-color: #0c7cba;
+}
+
+/* Upload Button */
+.update-profile-form .buttons .button {
+    background-color: #1da1f2;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.update-profile-form .buttons .button:hover {
     background-color: #0c7cba;
 }

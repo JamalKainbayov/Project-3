@@ -7,13 +7,11 @@ $dbname = "your_database";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
-// Update profile function
 function updateProfile($conn, $email, $username, $password, $bio) {
     $emailSql = "UPDATE email SET email=:email WHERE id=1";
     $usernameSql = "UPDATE username SET username=:username WHERE id=1";
@@ -39,14 +37,12 @@ function updateProfile($conn, $email, $username, $password, $bio) {
     return true;
 }
 
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $bio = $_POST['bio'];
 
-    // Call updateProfile function
     try {
         updateProfile($conn, $email, $username, $password, $bio);
         echo "Profile updated successfully.";

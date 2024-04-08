@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ac1c6294-974a-4a48-80ae-adf01b8ef8ea" name="Changes" comment="login edit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JamalKainbayov&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JamalKainbayov/Project-3.git&quot;,
+    &quot;accountId&quot;: &quot;57e88c6a-3bc6-425e-9061-9daa14d49373&quot;
+  }
+}</component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2dd2qiVyadWKRGOMrFyl97LGytC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "SQL Dialects",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb",
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PS-241.14494.237" />
+        <option value="bundled-php-predefined-ba97393d7c68-8f0632a2a215-com.jetbrains.php.sharedIndexes-PS-241.14494.237" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac1c6294-974a-4a48-80ae-adf01b8ef8ea" name="Changes" comment="" />
+      <created>1710323828914</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710323828914</updated>
+      <workItem from="1710323829925" duration="1248000" />
+      <workItem from="1710333829974" duration="3691000" />
+      <workItem from="1710340078908" duration="68000" />
+      <workItem from="1710488667712" duration="2706000" />
+      <workItem from="1710750879741" duration="3076000" />
+      <workItem from="1710757491591" duration="582000" />
+      <workItem from="1711525870253" duration="628000" />
+      <workItem from="1711526805762" duration="2516000" />
+      <workItem from="1711533696853" duration="1198000" />
+      <workItem from="1711540251669" duration="1411000" />
+      <workItem from="1711612111443" duration="107000" />
+      <workItem from="1711612240123" duration="1974000" />
+      <workItem from="1711619914240" duration="1018000" />
+      <workItem from="1712045834094" duration="267000" />
+      <workItem from="1712047801500" duration="73000" />
+      <workItem from="1712047888385" duration="628000" />
+      <workItem from="1712127292496" duration="4693000" />
+      <workItem from="1712134396248" duration="73000" />
+      <workItem from="1712134503475" duration="1748000" />
+      <workItem from="1712143176791" duration="1951000" />
+      <workItem from="1712299226876" duration="255000" />
+      <workItem from="1712299558404" duration="2686000" />
+      <workItem from="1712562186169" duration="953000" />
+    </task>
+    <task id="LOCAL-00001" summary="lol">
+      <option name="closed" value="true" />
+      <created>1710323906084</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710323906084</updated>
+    </task>
+    <task id="LOCAL-00002" summary="lol">
+      <option name="closed" value="true" />
+      <created>1710323988122</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710323988122</updated>
+    </task>
+    <task id="LOCAL-00003" summary="lol">
+      <option name="closed" value="true" />
+      <created>1710335870414</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710335870414</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Edited">
+      <option name="closed" value="true" />
+      <created>1710337000582</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710337000582</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1710752712895</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710752712895</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added">
+      <option name="closed" value="true" />
+      <created>1712045904668</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712045904668</updated>
+    </task>
+    <task id="LOCAL-00007" summary="new database">
+      <option name="closed" value="true" />
+      <created>1712045995350</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712045995350</updated>
+    </task>
+    <task id="LOCAL-00008" summary="login edit">
+      <option name="closed" value="true" />
+      <created>1712132520498</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712132520498</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lol" />
+    <MESSAGE value="Edited" />
+    <MESSAGE value="Fixed" />
+    <MESSAGE value="added" />
+    <MESSAGE value="new database" />
+    <MESSAGE value="login edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="login edit" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

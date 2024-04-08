@@ -1,43 +1,33 @@
+
 <?php
-global $conn;
-require "conn.php"
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Login</title>
-</head>
-<style>
-    <?php include "Css/main.css" ?>
-</style>
-<body>
-    <form method="POST" action="Login.php">
-        <label for="username">Username:</label>
-        <input type="text" name="username"><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
-        <a class=JxN href="#"> Forgot password?<a>
-        <input type="submit" value="Log in">
-    </form>
-</body>
-<?php
-$username = $_POST['username'];
-$password = $_POST['password'];
+require "conn.php";
+session_start();
+// echo $_POST["password"];
 
- $existingUser = $conn->query("SELECT * FROM user_info WHERE username = '$username'")->fetch();
+$search_user = $conn->prepare("SELECT * FROM user_info WHERE Username = :gebruikersnaam");
+$search_user->bindParam(":gebruikersnaam", $_POST["username"]);
+$search_user->execute();
+$user = $search_user->fetch(PDO::FETCH_ASSOC);
+var_dump($user);
 
-        if ($existingUser) {
-            echo "Username already exists. Please choose a different username.";
-        } else {
-
-            $sql = "INSERT INTO user_info (username, password) VALUES ('$username', '$password')";
-            $conn->exec($sql);
-
-        }
-    $conn = null; 
-        
+if ($user) {
+    if (password_verify($_POST["password"], $user["Password"])) {
+        echo $user['Id'];
+        $_SESSION['Username'] = $user['Username'];
+        $_SESSION['Id'] = $user['Id'];
+        echo "<script>window.open('function.php', '_self')</script>";
+    } else {
+        echo "<script>alert('Your Username or Password is incorrect')</script>";
+    }
+} else {
+    echo "<script>alert('User not found')</script>";
+}
 ?>
 </html>
+
+
+
+
+
+
+

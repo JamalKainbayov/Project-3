@@ -1,7 +1,5 @@
-
 <?php
 session_start();
-
 require "conn.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,11 +13,11 @@ $result = $sql->fetch();
 
 if ($result) {
     if (password_verify($password, $result['Password'])) {
-        session_start();
+        // session_start();
         $_SESSION['username'] = $username;
         $_SESSION['Id'] = $result['Id'];
         header("Location: function.php");
-        exit();
+        // exit();
     } else {
         echo "Invalid username or password.";
     }

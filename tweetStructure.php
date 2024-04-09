@@ -2,6 +2,7 @@
 $_GET['post_content'] = $post_text;
 $_GET['post_date'] = $post_date;
 $_GET['Upload_image'] = $post_img;
+$_GET['user_id']=$user_id;
 $_GET['Username'] = $user_name;
 $_GET['post_id'] = $post_id;
 $_GET['likesCount'] = $likes_count;
@@ -73,6 +74,8 @@ $_GET['comments_count'] = $comments_count;
     </div><br><br>
 
     <!-- Delete / Edit-->
+   <?php if($user_id==$_SESSION['Id']):
+   ?>
     <div class="tweet_del">
         <div class="dropdown">
             <button class="dropbtn"><span class="fa fa-ellipsis-h"></span></button>
@@ -86,6 +89,9 @@ $_GET['comments_count'] = $comments_count;
 
         </div>
     </div>
+    <?php
+        endif
+        ?>
 </div>
 
 <!-- <script src="jquery.min.js"></script> -->

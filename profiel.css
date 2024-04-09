@@ -1,7 +1,8 @@
-*{ padding: 0; 
-    margin: 0; 
-    color:white; 
-    font-family: sans-serif;
+*{
+padding: 0; 
+margin: 0; 
+color:white; 
+font-family: sans-serif; 
 } 
 
 body{ 
@@ -11,70 +12,27 @@ body{
 
 .img-box{ 
     width: 80px; 
-    height: 120px;
+    height: 120px; 
     border: 2px solid black; 
 } 
 
-img{ 
+.img{ 
     width: 120px; 
     height: 120px; 
     border: 2px solid black; 
 } 
 
-.menu{ 
-    background-color: black; 
-    width: 260px; 
-    height: 100vh; 
-    padding: 20px; 
-    overflow: hidden; transition: .5s;
-} 
-
-.menu:hover{ 
-    width: 280px; 
-} 
-
-ul{ 
-    list-style: none;
-    height: 95%; 
-} 
-
-ul li a{ 
-    display:block; 
-    text-decoration: none; 
-    padding: 10px; 
-    margin:10px 0; 
-    border-radius: 8px; 
-    display: flex; 
-    align-items: center; 
-    gap: 40px;
-}
-
-ul li a:hover,.active,.data-info .box:hover,td:hover{ 
-    background-color: #ffffff55; 
-} 
-.log-out{ 
-    margin-top: 20px; 
-    padding-top: 20px; 
-    font-size: 20px; 
-    background-color:rgb(115, 94, 134); 
-    width: 80%; 
-}
-
-ul li a i { 
-    font-size: 30px; 
-} 
 .content{ 
     background-color: white; 
     width: 1300px; 
     color: #001; 
-    margin-left: 500px;
-}
+} 
 
 .center h3{ 
     color:black; 
     font-family: sans-serif; 
     font-weight: 5000px; 
-}
+} 
 
 .center i{ 
     color:black; 
@@ -108,7 +66,7 @@ ul li a i {
     background-color: rgb(228, 228, 228); 
     color: black; 
     border-radius: 10px; 
-    margin-left: 1050px;
+    margin-left: 1050px; 
     margin-top: 10px; 
     font-size: 18px; 
     border: 5px solid white; 
@@ -121,7 +79,7 @@ ul li a i {
     margin-left: 35px; 
     padding: 20px; 
     border-radius: 10px; 
-} 
+}
 
 .profile7 h3{ 
     color: black; 
@@ -134,7 +92,8 @@ ul li a i {
 .profile7 h7{ 
     color: black; 
 } 
-.profile h1 { 
+
+.profile h1 {
     margin-bottom: 10px; 
     color: #000; 
 } 
@@ -155,4 +114,5 @@ ul li a i {
     color:black; 
     border: none; 
     border-radius: 5px; 
-    cursor: pointer; } 
+    cursor: pointer; 
+} 

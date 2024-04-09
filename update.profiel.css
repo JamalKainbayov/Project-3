@@ -32,7 +32,7 @@
 
 /* Submit Button */
 .update-profile-form button[type="submit"] {
-    background-color: #1da1f2;
+    background-color: black;
     color: white;
     padding: 14px 20px;
     border: none;
@@ -41,12 +41,12 @@
 }
 
 .update-profile-form button[type="submit"]:hover {
-    background-color: #0c7cba;
+    background-color: black;
 }
 
 /* Upload Button */
 .update-profile-form .buttons .button {
-    background-color: #1da1f2;
+    background-color: black;
     color: white;
     padding: 14px 20px;
     border: none;
@@ -57,5 +57,5 @@
 }
 
 .update-profile-form .buttons .button:hover {
-    background-color: #0c7cba;
+    background-color: black;
 }

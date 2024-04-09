@@ -9,7 +9,7 @@ include("conn.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
-    <link rel="stylesheet" href="twitter-style.css">
+    <link rel="stylesheet" href="update.profiel.css">
 </head>
 <body>
     <div class="update-profile-container">
@@ -33,7 +33,7 @@ include("conn.php");
             </div>
             <div class="buttons">
                 <button type="submit">Update</button>
-                <a href="upload_profile_picture_form.php" class="button">Upload Profile Picture</a>
+                <a href="upload.profiel.php" class="button">Upload Profile Picture</a>
             </div>
         </form>
     </div>

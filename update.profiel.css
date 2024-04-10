@@ -1,13 +1,10 @@
-/* Twitter Style */
-
-/* Main Container */
 .update-profile-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Form Styling */
+
 .update-profile-form {
     background-color: #fff;
     padding: 20px;
@@ -15,7 +12,7 @@
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
 }
 
-/* Form Inputs */
+
 .update-profile-form .form-group {
     margin-bottom: 15px;
 }
@@ -30,7 +27,7 @@
     border-radius: 3px;
 }
 
-/* Submit Button */
+
 .update-profile-form button[type="submit"] {
     background-color: black;
     color: white;
@@ -44,7 +41,7 @@
     background-color: black;
 }
 
-/* Upload Button */
+
 .update-profile-form .buttons .button {
     background-color: black;
     color: white;

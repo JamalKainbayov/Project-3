@@ -17,7 +17,7 @@
                     <img src="profiel.png" alt="profile"> 
                 </div> 
                 <a href="update.profiel.php" target="_blank"><button class="edit-profile-btn">Edit Profile</button></a>  
-                <div class="profile7"> <h3>Koko Tengaa Po</h3> <h5>marjer@gmail.com</h5> <h7>Joined January 2019</h7> 
+                <div class="profile7"> <h3>Username</h3> <h5>E-mail</h5> <h7>Joined January 2019</h7> 
                 <div class="button-container"> 
                     <button class="button">Following: 23</button> <button class="button">Followers: 1</button> 
                 </div> 

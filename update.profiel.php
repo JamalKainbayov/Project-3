@@ -23,10 +23,7 @@ include("conn.php");
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username">
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password">
-            </div>
+            
             <div class="form-group">
                 <label for="bio">Bio</label>
                 <textarea id="bio" name="bio" placeholder="Enter your bio"></textarea>

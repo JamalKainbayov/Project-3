@@ -10,7 +10,7 @@
     <?php include "Css/main.css"?>
 </style>
 <body>
-<form method="POST" action="Login.php" class= "login">
+<form method="POST" action="Login.php" class= "gtr">
     <label for="username">Username:</label>
     <input type="text" name="username" autocomplete="off"><br>
     <label for="password">Password:</label>

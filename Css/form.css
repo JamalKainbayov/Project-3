@@ -1,0 +1,51 @@
+.gtr {
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    margin: 0 auto;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #11101d;
+}
+.form-css {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-css label {
+    margin-right: 10px;
+}
+.btn {
+    display: block;
+    margin: auto;
+}
+.register-link {
+    margin-left: 90px;
+}
+.form-css i {
+    color: #410a9f;
+}
+.welkom {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #410a9f;
+    font: bold 50px Arial, sans-serif;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+    color: #000000;
+}

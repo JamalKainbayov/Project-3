@@ -42,7 +42,7 @@ if ($result) {
     <input type="text" name="username" autocomplete="off"><br>
     <label for="password">Password:</label>
     <input type="password" name="password" required><br>
-    <a class=JxN href="#"> Forgot password?<a>
+    <a class=JxN href="forgot_password.php"> Forgot password?<a>
             <button type="submit">Login</button>
 </form>
 </body>

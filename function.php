@@ -1,7 +1,7 @@
 <?php
 require ("Index.php");
 if (!isset($_SESSION['Id'])) {
-	header("Location: Login.php");
+	header("Location: index.php");
 }
 $user_id = $_SESSION['Id'];
 if (isset($_POST["btn_add_post"])) {

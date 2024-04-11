@@ -121,15 +121,15 @@ textarea{
     display: block;
 }
 
-.tweet_left img {
-    width: 50px;
-    border-radius: 50px;
-    border: 1px solid var(--twitter-background);
-    margin: 0;
-}
-
 #image-preview {
     width: 20px; 
     height: 20px; 
     margin-top: 10px;
   }
+
+.back {
+    position: fixed;
+    left: 18rem;
+    top: 0.3rem;
+    color: black;
+}

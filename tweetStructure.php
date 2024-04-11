@@ -9,6 +9,7 @@ $_GET['likesCount'] = $likes_count;
 $_GET['comments_count'] = $comments_count;
 ?>
 <div class="tweet_box">
+    
     <div class="tweet_left"><img src="RAlogo.jpeg"></div>
 
     <div class="tweet_body">
@@ -38,25 +39,26 @@ $_GET['comments_count'] = $comments_count;
             <?php
             $selectLike = $conn->prepare(query: "SELECT * FROM likes WHERE user_id =:user_id AND post_id= :post_id");
             $selectLike->bindParam(":post_id", $post_id);
-            $selectLike->bindParam(":user_id", $user_id);
+            $selectLike->bindParam(":user_id", $_SESSION['Id']);
             $selectLike->execute();
-
-            if ($selectLike->rowCount() == 1):
+             
+            if ($selectLike->rowCount() > 0):
                 $row = $selectLike->fetch(PDO::FETCH_ASSOC);
                 $like_id = $row['like_id'];
                 ?>
 
                 <span class="unlike fa-solid fa-heart" data-id="<?php echo $post_id; ?>"
-                    data-user="<?php echo $user_id; ?>"></span>
+                    data-user="<?php echo $_SESSION['Id']; ?>"></span>
                 <span class="like fa-regular fa-heart hide" data-id="<?php echo $post_id; ?>"
-                    data-user="<?php echo $user_id; ?>"></span>
+                    data-user="<?php echo $_SESSION['Id']; ?>"></span>
             <?php else: ?>
                 <!-- user has not yet liked post -->
                 <span class="unlike fa-solid fa-heart hide" data-id="<?php echo $post_id; ?>"
-                    data-user="<?php echo $user_id; ?>"></span>
+                    data-user="<?php echo $_SESSION['Id']; ?>"></span>
                 <span class="like fa-regular fa-heart" data-id="<?php echo $post_id; ?>"
-                    data-user="<?php echo $user_id; ?>"></span>
+                    data-user="<?php echo $_SESSION['Id']; ?>"></span>
             <?php endif ?>
+            
             <span class="likes-count">
                 <?php echo $likes_count; ?>
             </span>

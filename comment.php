@@ -36,10 +36,13 @@ $comments_count = $selectComment->rowCount();
 
 <!-- add textarea --------------------------------------------------------------------------------------------->
 <div class="grid-container" id="blur">
+
     <div class="sideBar">
     </div>
     <div class="main">
+        
         <p>
+            <a href="function.php" class="back"><i class="fa-solid fa-chevron-left"></i></a>
             <?php require_once ("tweetStructure.php"); ?>
 
         </p>
@@ -71,7 +74,7 @@ $comments_count = $selectComment->rowCount();
                             <div id="image-add-preview"></div>
                         </div>
                         <input hidden class="img-input" name="post_id" value="<?php echo $post_id ?>">
-                        <button class="btn btn-outline-primary" type="submit" name="btn_add_comment"><i
+                        <button class="btn btn-dark" type="submit" name="btn_add_comment"><i
                                 class="fa-solid fa-paper-plane"></i></button>
 
                     </div>
@@ -82,9 +85,7 @@ $comments_count = $selectComment->rowCount();
 
         $selectcomment = $conn->prepare("SELECT comments.* , user_info.Username FROM comments INNER JOIN user_info ON comments.user_id = user_info.Id where post_id= :post_id");
         // $selectPost = $conn->prepare("SELECT posts.* , user_info.Username FROM posts INNER JOIN user_info ON posts.user_id = user_info.Id ORDER BY post_id DESC");
-        
         // $selectcomment = $conn->prepare("SELECT * FROM comments");
-        
         $selectcomment->bindParam(":post_id", $post_id);
         $selectcomment->execute();
 
@@ -94,9 +95,6 @@ $comments_count = $selectComment->rowCount();
             $comment_img = $row['Image_upload'];
             $user_name = $row['Username'];
             $user_id = $row['user_id'];
-
-
-
             ?>
 
 
@@ -164,6 +162,10 @@ $comments_count = $selectComment->rowCount();
     </div>
 </div>
 <!-- update textarea --------------------------------------------------------------------------------------------->
+
+            <?php
+                if ($user_id == $_SESSION['Id']):
+                    ?>
 <div id="popup-window" class='popup-close'>
     <div id="close-btn">
         &times;
@@ -191,12 +193,15 @@ $comments_count = $selectComment->rowCount();
                         <div id="image-update-preview"></div>
                         <!-- <i class="fa-regular fa-face-smile"></i> -->
                     </div>
-                    <button class="btn btn-outline-primary" type="submit" name="btn_update_comment">opslaan</button>
+                    <button class="btn btn-dark btn-style" type="submit" name="btn_update_comment">opslaan</button>
             </div>
             </form>
         </div>
     </div>
 </div>
+<?php
+                endif
+                ?>
 
 <!-- Update Post -->
 
@@ -260,6 +265,5 @@ $comments_count = $selectComment->rowCount();
         $('#updatecomment-text').emojioneArea({ pickerPosition: 'bottom' });
 
     }
-
 
 </script>

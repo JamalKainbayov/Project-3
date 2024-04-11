@@ -1,6 +1,6 @@
 :root
 {
-    --twitter-color: black;
+    --twitter-color: rgb(37, 38, 37);
     --twitter-background: #e6ecf0;
 }
 .tweet_del {
@@ -50,7 +50,8 @@ select:focus{
 }
 .tweet_left img {
   width: 50px;
-  border-radius: 50px;
+  height: 50px;
+  border-radius: 50%;
   border: 1px solid var(--twitter-background);
   margin: 0 20px;
 }
@@ -116,7 +117,7 @@ select:focus{
   align-items: center;
   justify-content: space-between;
 }
-.button_tweet{
+/* .button_tweet{
   margin-top: 10px;
   padding: 10px 15px;
   border-radius: 30%;
@@ -128,9 +129,9 @@ select:focus{
   border: none;
   font-size: 15px;
   cursor: pointer;
-}
+} */
 .icon {
-  color: #007bff;
+  color: #3b3b3f;
 }
 /* .button_tweet:hover{
   background-color: #070a0b;
@@ -179,4 +180,8 @@ select:focus{
 .fa-thumbs-up, .fa-thumbs-o-up {
   transform: rotateY(-180deg);
   font-size: 1.3em;
+}
+
+.btn-style{
+margin: 10px;
 }

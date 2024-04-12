@@ -6,20 +6,33 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: unauthorized.php");
     exit();
 }
-
 if(isset($_POST['delete_user'])) {
-   
     $user_id = $_POST['delete_user'];
-    $stmt = $conn->prepare("DELETE FROM user_info WHERE id = ?");
-    $stmt->execute([$user_id]);
+    
+    // Delete dependent records from comments table
+    $stmt_delete_comments = $conn->prepare("DELETE FROM comments WHERE user_id = ?");
+    $stmt_delete_comments->execute([$user_id]);
+
+    // Delete dependent records from likes table
+    $stmt_delete_likes = $conn->prepare("DELETE FROM likes WHERE user_id = ?");
+    $stmt_delete_likes->execute([$user_id]);
+
+    // Delete dependent records from posts table
+    $stmt_delete_posts = $conn->prepare("DELETE FROM posts WHERE user_id = ?");
+    $stmt_delete_posts->execute([$user_id]);
+
+    // Now delete the user
+    $stmt_delete_user = $conn->prepare("DELETE FROM user_info WHERE id = ?");
+    $stmt_delete_user->execute([$user_id]);
+    
     header("Location: ".$_SERVER['PHP_SELF']);
     exit();
 }
 
+
 $stmt = $conn->query("SELECT id, username, password FROM user_info");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

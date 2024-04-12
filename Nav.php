@@ -68,7 +68,7 @@ session_start();
                     <div class="name">
                         <?php
                         if (isset($_SESSION['username'])) {
-                            echo "<div class='name'>" . $_SESSION['username'] . "</div>";
+                            echo "<div class='name'>Welkom, " . $_SESSION['username'] . "</div>";
                         } else {
                             echo "<div class='name'>Login</div>";
                         }

@@ -4,7 +4,7 @@
         <div class="logo_content">
             <div class="logo">
                 <i class='bx bxl-twitter'></i>
-                <div class="logo_name">Cipfry</div>
+                <div class="logo_name">Chirpify</div>
             </div>
             <i class='bx bx-menu' id="menu"></i>
         </div>

@@ -16,6 +16,43 @@ body {
  overflow: hidden;
 }
 
+
+.adminContent{
+    position: absolute;
+    height: 100%;
+    width: calc(100%-260px);
+    left: 260px;
+    font-size: 40px;
+}
+
+.adminUsers table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.thDelete{
+    text-align: center;
+}
+
+.deleteButton{
+    color: black;
+    background: #FF474D;
+    padding: 5px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.deleteButton:hover{
+    background: #B33236;
+    transition: 0.5s;
+
+}
+
+.delButton1{
+    padding: 8px 50px;
+}
+
 .gtr {
  width: 400px;
  background-color: #ffffff;
@@ -320,3 +357,5 @@ body {
     left: 88%;
     background-color: none;
 }
+
+

@@ -32,9 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $sql->fetch();
     
     if ($result) {
-        // Verify if the entered password matches the password in the database
         if ($password === $result['password']) {
-            // Set session variables upon successful login
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $result['role'];
             

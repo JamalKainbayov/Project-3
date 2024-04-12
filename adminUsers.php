@@ -3,25 +3,19 @@ include "conn.php";
 session_start();
 
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
-    // Redirect the user to another page or display an error message
     header("Location: unauthorized.php");
-    exit(); // Ensure script stops executing after redirection
+    exit();
 }
 
-// Check if form is submitted
 if(isset($_POST['delete_user'])) {
-    // Get the user ID to delete
+   
     $user_id = $_POST['delete_user'];
-    // Prepare a delete statement
     $stmt = $conn->prepare("DELETE FROM user_info WHERE id = ?");
-    // Execute the delete statement
     $stmt->execute([$user_id]);
-    // Redirect to the same page after deletion
     header("Location: ".$_SERVER['PHP_SELF']);
     exit();
 }
 
-// Fetch users from the database with username, password, and email
 $stmt = $conn->query("SELECT id, username, password FROM user_info");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

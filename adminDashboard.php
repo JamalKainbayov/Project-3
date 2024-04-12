@@ -3,9 +3,8 @@ include "conn.php";
 session_start();
 
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
-    // Redirect the user to another page or display an error message
     header("Location: unauthorized.php");
-    exit(); // Ensure script stops executing after redirection
+    exit();
 }
 
 ?>

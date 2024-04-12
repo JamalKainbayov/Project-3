@@ -1,7 +1,7 @@
 <?php
 require ("Index.php");
 if (!isset($_SESSION['Id'])) {
-	header("Location: function.php");
+	header("Location: Login.php");
 }
 $user_id = $_SESSION['Id'];
 if (isset($_POST["btn_add_post"])) {
@@ -131,7 +131,7 @@ if (isset($_POST["btn_add_post"])) {
 							<div id="image-update-preview"></div>
 							<!-- <i class="fa-regular fa-face-smile"></i> -->
 						</div>
-						<button class="btn btn-outline-primary" type="submit" name="btn_update_post">opslaan</button>
+						<button class="btn btn-dark btn-style" type="submit" name="btn_update_post">opslaan</button>
 					</form>
 				</div>
 			</div>

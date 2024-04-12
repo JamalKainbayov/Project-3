@@ -1,6 +1,6 @@
 <?php
 include "conn.php";
-$message= "";
+$message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         $username = $_POST["username"];
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,25 +42,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Register</title>
     <style>
-        <?php include "Css/form.css"?>
+        <?php include "Css/form.css" ?>
     </style>
 </head>
+
 <body>
-<h1 class="welkom">Welcome to Chirpify</h1>
-<form method="POST" action="Register.php" class="gtr">
-    <div class="form-css">
-        <i class="fas fa-user"></i>    <label for="username">Username:</label>
-        <input type="text" name="username" autocomplete="off" required>
-    </div>
-    <div class="form-css">
-        <i class="fas fa-lock"></i>    <label for="password">Password:</label>
-        <input type="password" name="password" required>
-    </div>
-    <a href="Login.php"> Already have an account?</a>
-    <div id="message">
-        <?php echo $message; ?>
-    </div>
-    <button type="submit" class="btn">Register</button>
-</form>
+    <h1 class="welkom">Welcome to Chirpify</h1>
+    <form method="POST" action="Register.php" class="gtr">
+        <div class="form-css">
+            <i class="fas fa-user"></i> <label for="username">Username:</label>
+            <input type="text" name="username" autocomplete="off" required>
+        </div>
+        <div class="form-css">
+            <i class="fas fa-lock"></i> <label for="password">Password:</label>
+            <input type="password" name="password" required>
+        </div>
+        <a href="Login.php"> Already have an account?</a>
+        <div id="message">
+            <?php echo $message; ?>
+        </div>
+        <button type="submit" class="btn">Register</button>
+
+        <!-- <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2020 Copyright: -->
+            <a class="text-body" href="team.php">About us</a>
+        </div>
+    </form>
+
 </body>
+
 </html>

@@ -40,7 +40,7 @@ $comments_count = $selectComment->rowCount();
     <div class="sideBar">
     </div>
     <div class="main">
-        
+
         <p>
             <a href="function.php" class="back"><i class="fa-solid fa-chevron-left"></i></a>
             <?php require_once ("tweetStructure.php"); ?>
@@ -161,11 +161,11 @@ $comments_count = $selectComment->rowCount();
         ?>
     </div>
 </div>
-<!-- update textarea --------------------------------------------------------------------------------------------->
+<!-- update comment HTML --------------------------------------------------------------------------------------------->
 
-            <?php
-                if ($user_id == $_SESSION['Id']):
-                    ?>
+<?php
+if ($user_id == $_SESSION['Id']):
+    ?>
 <div id="popup-window" class='popup-close'>
     <div id="close-btn">
         &times;
@@ -184,6 +184,44 @@ $comments_count = $selectComment->rowCount();
                     <div class="tweet_icons-wrapper">
                         <div class="tweet_icons-add">
                             <!-- <a href=""> <i class="fa-regular fa-image"></i></a> -->
+                                <label for="img-update-input" class="inputimg"><i
+                                        class="fa-regular fa-image icon"></i></label>
+                                <input type="file" name="image-update" class="img-input" id="img-update-input"
+                                    accept="image/*">
+
+                            </div>
+                            <div id="image-update-preview"></div>
+                            <!-- <i class="fa-regular fa-face-smile"></i> -->
+                        </div>
+                        <button class="btn btn-dark btn-style" type="submit" name="btn_update_comment">opslaan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+endif
+?>
+
+<!-- Update Post HTML-->
+<div id="popup-window" class='popup-close'>
+    <div id="close-btn">
+        &times;
+    </div>
+    <div class="tweet_display">
+        <div class="main">
+            <div class="tweet_body">
+                <form method="POST" action="function.php" enctype="multipart/form-data">
+                    <input type="hidden" id='updatepost-id' name='post_id'></input>
+                    <textarea name="post_text" id="updatepost-text" cols="100%" rows="3"
+                        placeholder="update"></textarea>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
+
+                    <div class="tweet_icons-wrapper">
+                        <div class="tweet_icons-add">
+                            <!-- <a href=""> <i class="fa-regular fa-image"></i></a> -->
                             <label for="img-update-input" class="inputimg"><i
                                     class="fa-regular fa-image icon"></i></label>
                             <input type="file" name="image-update" class="img-input" id="img-update-input"
@@ -193,16 +231,13 @@ $comments_count = $selectComment->rowCount();
                         <div id="image-update-preview"></div>
                         <!-- <i class="fa-regular fa-face-smile"></i> -->
                     </div>
-                    <button class="btn btn-dark btn-style" type="submit" name="btn_update_comment">opslaan</button>
+                    <button class="btn btn-dark btn-style" type="submit" name="btn_update_post">opslaan</button>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>
-<?php
-                endif
-                ?>
-
+</div>
 <!-- Update Post -->
 
 <script>
@@ -263,6 +298,26 @@ $comments_count = $selectComment->rowCount();
         document.getElementById('popup-window').classList.remove('popup-close');
 
         $('#updatecomment-text').emojioneArea({ pickerPosition: 'bottom' });
+
+    }
+
+    function updatePost(postText, postId, postImg) {
+        const blur = document.getElementById("blur");
+        blur.classList.add('activeUpdate');
+        document.getElementById("updatepost-id").value = postId;
+        document.getElementById("updatepost-text").innerText = postText;
+
+        let img = document.createElement('img');
+        img.classList.add('s-img')
+        img.src = postImg;
+        document.getElementById('image-update-preview').innerHTML = ''; // Clear previous preview
+        document.getElementById('image-update-preview').appendChild(img);
+
+
+        document.getElementById('popup-window').classList.add('popup-show');
+        document.getElementById('popup-window').classList.remove('popup-close');
+
+        $('#updatepost-text').emojioneArea({ pickerPosition: 'bottom' });
 
     }
 

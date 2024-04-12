@@ -1,4 +1,4 @@
-<?php include "conn.php"; 
+<?php include "conn.php";
 session_start();
 ?>
 
@@ -53,29 +53,36 @@ session_start();
                 </a>
                 <span class="tooltip">Explore</span>
             </li>
+            <li>
+                <a href="team.php">
+                <i class="fa-solid fa-users-line"></i>
+                    <span class="links_name">Over ons</span>
+                </a>
+                <span class="tooltip">Over ons</span>
+            </li>
         </ul>
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">   
-                    <div class="name">                
-                                      <?php
-                                      if(isset($_SESSION['username'])) {
-                                          echo "<div class='name'>" . $_SESSION['username'] . "</div>";
-                                      } else {
-                                          echo "<div class='name'>Login</div>";
-                                      }
-                                      ?>
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                    <div class="name">
+                        <?php
+                        if (isset($_SESSION['username'])) {
+                            echo "<div class='name'>" . $_SESSION['username'] . "</div>";
+                        } else {
+                            echo "<div class='name'>Login</div>";
+                        }
+                        ?>
                     </div>
                 </div>
                 <?php
-                    if(isset($_SESSION['username'])) {
-                        echo "<a href='logout.php'><i class='bx bx-log-out' id='log_out'></i></a>";
-                    } else {
-                        echo "<a href='login.php'><i class='bx bx-log-in' id='log_in'></i></a>";                
-                    }
+                if (isset($_SESSION['username'])) {
+                    echo "<a href='logout.php'><i class='bx bx-log-out' id='log_out'></i></a>";
+                } else {
+                    echo "<a href='login.php'><i class='bx bx-log-in' id='log_in'></i></a>";
+                }
                 ?>
-            </div>            
+            </div>
         </div>
     </div>
 </nav>
